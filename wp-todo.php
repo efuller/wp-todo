@@ -104,13 +104,31 @@ final class WP_Todo {
 	}
 
 	/**
+	 * Get plugin header information.
+	 *
+	 * @author Aubrey Portwood
+	 * @since  NEXT
+	 *
+	 * @param  string $key The data you want from the header.
+	 * @return string      The data, empty string if nothing is found.
+	 */
+	public function get_plugin_info( $key ) {
+		require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
+		if ( isset( $data[ $key ] ) ) {
+			return $data[ $key ];
+		}
+
+		return '';
+	}
+
+	/**
 	 * Sets up our plugin.
 	 *
 	 * @since  NEXT
 	 * @author Aubrey Portwood
 	 */
 	protected function __construct() {
-
 		// Nothing yet.
 	}
 
@@ -174,6 +192,8 @@ final class WP_Todo {
 	 * @return void
 	 */
 	public function init() {
+
+		wp_die( $this->get_plugin_info( 'Version' ) );
 
 		// load translated strings for plugin
 		load_plugin_textdomain( 'wp-todo', false, dirname( 'wp-todo' ) . '/languages/' );
