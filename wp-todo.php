@@ -193,8 +193,6 @@ final class WP_Todo {
 	 */
 	public function init() {
 
-		wp_die( $this->get_plugin_info( 'Version' ) );
-
 		// load translated strings for plugin
 		load_plugin_textdomain( 'wp-todo', false, dirname( 'wp-todo' ) . '/languages/' );
 
