@@ -1,0 +1,18 @@
+{
+  "name": "wp-todo",
+  "description": "A todo for your WordPress powered site.",
+  "license": "GPLv2",
+  "authors": [
+    "Aubrey Portwood and Eric Fuller"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+  }
+}

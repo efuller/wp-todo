@@ -1,0 +1,18 @@
+{
+  "generator-plugin-wp": {
+    "name": "WP Todo",
+    "homepage": "https://github.com/aubreypwd/wp-todo",
+    "description": "A todo for your WordPress powered site.",
+    "version": "NEXT",
+    "author": "Aubrey Portwood and Eric Fuller",
+    "authoremail": "aubreypwd@gmail.com",
+    "authorurl": "https://github.com/aubreypwd",
+    "license": "GPLv2",
+    "slug": "wp-todo",
+    "classname": "WP_Todo",
+    "classprefix": "WPT_",
+    "prefix": "wp_todo",
+    "year": 2017,
+    "currentVersionWP": "4.7.2"
+  }
+}
