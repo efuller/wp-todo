@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * Plugin Name: WP Todo
  * Plugin URI:  https://github.com/aubreypwd/wp-todo
  * Description: A todo for your WordPress powered site.
@@ -36,15 +36,13 @@
  */
 
 /**
- * Built using generator-plugin-wp
- */
-
-
-/**
- * Autoloads files with classes when needed
+ * Autoloads files with classes when needed.
  *
  * @since  NEXT
+ * @author Aubrey Portwood
+ *
  * @param  string $class_name Name of the class being requested.
+ *
  * @return void
  */
 function wp_todo_autoload_classes( $class_name ) {
@@ -62,57 +60,30 @@ function wp_todo_autoload_classes( $class_name ) {
 spl_autoload_register( 'wp_todo_autoload_classes' );
 
 /**
- * Main initiation class
+ * Main initiation class.
  *
  * @since  NEXT
+ * @author Aubrey Portwood
  */
 final class WP_Todo {
 
 	/**
-	 * Current version
-	 *
-	 * @var  string
-	 * @since  NEXT
-	 */
-	const VERSION = 'NEXT';
-
-	/**
-	 * URL of plugin directory
-	 *
-	 * @var string
-	 * @since  NEXT
-	 */
-	protected $url = '';
-
-	/**
-	 * Path of plugin directory
-	 *
-	 * @var string
-	 * @since  NEXT
-	 */
-	protected $path = '';
-
-	/**
-	 * Plugin basename
-	 *
-	 * @var string
-	 * @since  NEXT
-	 */
-	protected $basename = '';
-
-	/**
-	 * Detailed activation error messages
+	 * Detailed activation error messages.
 	 *
 	 * @var array
+	 *
 	 * @since  NEXT
+	 * @author Aubrey Portwood
 	 */
 	protected $activation_errors = array();
 
 	/**
-	 * Singleton instance of plugin
+	 * Singleton instance of plugin.
 	 *
 	 * @var WP_Todo
+	 *
 	 * @since  NEXT
+	 * @author Aubrey Portwood
 	 */
 	protected static $single_instance = null;
 
@@ -120,6 +91,8 @@ final class WP_Todo {
 	 * Creates or returns an instance of this class.
 	 *
 	 * @since  NEXT
+	 * @author Aubrey Portwood
+	 *
 	 * @return WP_Todo A single instance of this class.
 	 */
 	public static function get_instance() {
@@ -131,20 +104,22 @@ final class WP_Todo {
 	}
 
 	/**
-	 * Sets up our plugin
+	 * Sets up our plugin.
 	 *
 	 * @since  NEXT
+	 * @author Aubrey Portwood
 	 */
 	protected function __construct() {
-		$this->basename = plugin_basename( __FILE__ );
-		$this->url      = plugin_dir_url( __FILE__ );
-		$this->path     = plugin_dir_path( __FILE__ );
+
+		// Nothing yet.
 	}
 
 	/**
 	 * Attach other plugin classes to the base plugin class.
 	 *
 	 * @since  NEXT
+	 * @author Aubrey Portwood
+	 *
 	 * @return void
 	 */
 	public function plugin_classes() {
@@ -153,16 +128,14 @@ final class WP_Todo {
 	} // END OF PLUGIN CLASSES FUNCTION
 
 	/**
-	 * Add hooks and filters
+	 * Add hooks and filters.
 	 *
 	 * @since  NEXT
+	 * @author Aubrey Portwood
+	 *
 	 * @return void
 	 */
 	public function hooks() {
-		// Priority needs to be:
-		// < 10 for CPT_Core,
-		// < 5 for Taxonomy_Core,
-		// 0 Widgets because widgets_init runs at init priority 1.
 		add_action( 'init', array( $this, 'init' ), 0 );
 	}
 
@@ -170,162 +143,85 @@ final class WP_Todo {
 	 * Activate the plugin
 	 *
 	 * @since  NEXT
+	 * @author Aubrey Portwood
+	 *
 	 * @return void
 	 */
 	public function _activate() {
+
 		// Make sure any rewrite functionality has been loaded.
 		flush_rewrite_rules();
 	}
 
 	/**
-	 * Deactivate the plugin
+	 * Deactivate the plugin.
+	 *
 	 * Uninstall routines should be in uninstall.php
 	 *
 	 * @since  NEXT
+	 * @author Aubrey Portwood
+	 *
 	 * @return void
 	 */
 	public function _deactivate() {}
 
 	/**
-	 * Init hooks
+	 * Init hook.
 	 *
 	 * @since  NEXT
+	 * @author Aubrey Portwood
+	 *
 	 * @return void
 	 */
 	public function init() {
-		// bail early if requirements aren't met
-		if ( ! $this->check_requirements() ) {
-			return;
-		}
-		
+
 		// load translated strings for plugin
-		load_plugin_textdomain( 'wp-todo', false, dirname( $this->basename ) . '/languages/' );
+		load_plugin_textdomain( 'wp-todo', false, dirname( 'wp-todo' ) . '/languages/' );
 
 		// initialize plugin classes
 		$this->plugin_classes();
 	}
 
 	/**
-	 * Check if the plugin meets requirements and
-	 * disable it if they are not present.
-	 *
-	 * @since  NEXT
-	 * @return boolean result of meets_requirements
-	 */
-	public function check_requirements() {
-		// bail early if pluginmeets requirements
-		if ( $this->meets_requirements() ) {
-			return true;
-		}
-
-		// Add a dashboard notice.
-		add_action( 'all_admin_notices', array( $this, 'requirements_not_met_notice' ) );
-
-		// Deactivate our plugin.
-		add_action( 'admin_init', array( $this, 'deactivate_me' ) );
-
-		return false;
-	}
-
-	/**
 	 * Deactivates this plugin, hook this function on admin_init.
 	 *
 	 * @since  NEXT
+	 * @author Aubrey Portwood
+	 *
 	 * @return void
 	 */
 	public function deactivate_me() {
-		// We do a check for deactivate_plugins before calling it, to protect
-		// any developers from accidentally calling it too early and breaking things.
 		if ( function_exists( 'deactivate_plugins' ) ) {
-			deactivate_plugins( $this->basename );
+			deactivate_plugins( 'wp-todo' );
 		}
 	}
 
 	/**
-	 * Check that all plugin requirements are met
+	 * Include a file from the includes directory.
 	 *
 	 * @since  NEXT
-	 * @return boolean True if requirements are met.
-	 */
-	public function meets_requirements() {
-		// Do checks for required classes / functions
-		// function_exists('') & class_exists('').
-		// We have met all requirements.
-		// Add detailed messages to $this->activation_errors array
-		return true;
-	}
-
-	/**
-	 * Adds a notice to the dashboard if the plugin requirements are not met
-	 *
-	 * @since  NEXT
-	 * @return void
-	 */
-	public function requirements_not_met_notice() {
-		// compile default message
-		$default_message = sprintf( 
-			__( 'WP Todo is missing requirements and has been <a href="%s">deactivated</a>. Please make sure all requirements are available.', 'wp-todo' ), 
-			admin_url( 'plugins.php' ) 
-		);
-		
-		// default details to null
-		$details = null;
-
-		// add details if any exist
-		if ( ! empty( $this->activation_errors ) && is_array( $this->activation_errors ) ) {
-			$details = '<small>' . implode( '</small><br /><small>', $this->activation_errors ) . '</small>';
-		}
-
-		// output errors
-		?>
-		<div id="message" class="error">
-			<p><?php echo $default_message; ?></p>
-			<?php echo $details; ?>
-		</div>
-		<?php
-	}
-
-	/**
-	 * Magic getter for our object.
-	 *
-	 * @since  NEXT
-	 * @param string $field Field to get.
-	 * @throws Exception Throws an exception if the field is invalid.
-	 * @return mixed
-	 */
-	public function __get( $field ) {
-		switch ( $field ) {
-			case 'version':
-				return self::VERSION;
-			case 'basename':
-			case 'url':
-			case 'path':
-				return $this->$field;
-			default:
-				throw new Exception( 'Invalid ' . __CLASS__ . ' property: ' . $field );
-		}
-	}
-
-	/**
-	 * Include a file from the includes directory
-	 *
-	 * @since  NEXT
+	 * @author Aubrey Portwood
 	 * @param  string $filename Name of the file to be included.
+	 *
 	 * @return bool   Result of include call.
 	 */
 	public static function include_file( $filename ) {
 		$file = self::dir( $filename . '.php' );
+
 		if ( file_exists( $file ) ) {
 			return include_once( $file );
 		}
+
 		return false;
 	}
 
 	/**
-	 * This plugin's directory
+	 * This plugin's directory.
 	 *
 	 * @since  NEXT
+	 * @author Aubrey Portwood
 	 * @param  string $path (optional) appended path.
+	 *
 	 * @return string       Directory and path
 	 */
 	public static function dir( $path = '' ) {
@@ -335,24 +231,31 @@ final class WP_Todo {
 	}
 
 	/**
-	 * This plugin's url
+	 * This plugin's url.
 	 *
 	 * @since  NEXT
+	 * @author Aubrey Portwood
 	 * @param  string $path (optional) appended path.
+	 *
 	 * @return string       URL and path
 	 */
 	public static function url( $path = '' ) {
 		static $url;
+
 		$url = $url ? $url : trailingslashit( plugin_dir_url( __FILE__ ) );
+
 		return $url . $path;
 	}
 }
 
 /**
  * Grab the WP_Todo object and return it.
- * Wrapper for WP_Todo::get_instance()
+ *
+ * Wrapper for WP_Todo::get_instance().
  *
  * @since  NEXT
+ * @author Aubrey Portwood
+ *
  * @return WP_Todo  Singleton instance of plugin class.
  */
 function wp_todo() {
@@ -362,5 +265,6 @@ function wp_todo() {
 // Kick it off.
 add_action( 'plugins_loaded', array( wp_todo(), 'hooks' ) );
 
+// Activate/Deactivate.
 register_activation_hook( __FILE__, array( wp_todo(), '_activate' ) );
 register_deactivation_hook( __FILE__, array( wp_todo(), '_deactivate' ) );
