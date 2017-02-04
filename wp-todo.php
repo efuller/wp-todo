@@ -129,7 +129,7 @@ final class WP_Todo {
 	 * @author Aubrey Portwood
 	 */
 	protected function __construct() {
-		// Nothing yet.
+		$this->plugin_classes();
 	}
 
 	/**
@@ -154,7 +154,7 @@ final class WP_Todo {
 	 * @return void
 	 */
 	public function hooks() {
-		add_action( 'init', array( $this, 'init' ), 0 );
+		$this->init();
 	}
 
 	/**
@@ -191,13 +191,20 @@ final class WP_Todo {
 	 *
 	 * @return void
 	 */
-	public function init() {
+	private function init() {
+		add_action( 'init', array( $this, 'load_plugin_textdomain_plugin_classes' ) );
+	}
+
+	/**
+	 * Load the plugin text domain and classes.
+	 *
+	 * @author Aubrey Portwood
+	 * @since  NEXT
+	 */
+	public function load_plugin_textdomain_plugin_classes() {
 
 		// load translated strings for plugin
 		load_plugin_textdomain( 'wp-todo', false, dirname( 'wp-todo' ) . '/languages/' );
-
-		// initialize plugin classes
-		$this->plugin_classes();
 	}
 
 	/**
