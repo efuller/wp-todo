@@ -136,16 +136,21 @@ class WPT_Interface {
 		wp_enqueue_style( 'wp-todo', plugins_url( '../assets/css/wp-todo.css', __FILE__ ), array(), '1.0.0' );
 
 		foreach ( $scripts as $script ) {
-			if ( '..' !== $script && '.' !== $script ) {
+			if ( stristr( $script, '.js' ) ) {
+
+				// The name of the script.
+				$script_name = 'wp-todo-' . esc_attr( str_replace( '.min.', '', sanitize_title_with_dashes( basename( $script ) ) ) );
 
 				if ( stristr( $script, '.min.' ) && ( ! defined( 'SCRIPT_DEBUG' ) || ! SCRIPT_DEBUG ) ) {
 
 					// Only load .min. files when SCRIPT_DEBUG is off.
-					wp_enqueue_script( 'wp-todo', plugins_url( "../assets/js/$script", __FILE__ ), array( 'jquery' ), wp_todo()->get_plugin_info( 'Version' ), true );
+					wp_enqueue_script( $script_name, plugins_url( "../assets/js/$script", __FILE__ ), array( 'jquery' ), wp_todo()->get_plugin_info( 'Version' ), true );
 				} elseif ( ! stristr( $script, '.min.' ) ) {
 
+					error_log( print_r( array( $script_name, $script, __LINE__ ), true ) );
+
 					// Load non-minified files when SCRIPT_DEBUG is set.
-					wp_enqueue_script( 'wp-todo', plugins_url( "../assets/js/$script", __FILE__ ), array( 'jquery' ), wp_todo()->get_plugin_info( 'Version' ), true );
+					wp_enqueue_script( $script_name, plugins_url( "../assets/js/$script", __FILE__ ), array( 'jquery' ), wp_todo()->get_plugin_info( 'Version' ), true );
 				}
 			}
 		}

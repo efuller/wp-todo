@@ -1,5 +1,4 @@
 module.exports = function (grunt) {
-    grunt.loadNpmTasks('gruntify-eslint');
     require('load-grunt-tasks')(grunt);
     var pkg = grunt.file.readJSON('package.json');
     var bannerTemplate = '/**\n' + ' * <%= pkg.title %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n' + ' * <%= pkg.author.url %>\n' + ' *\n' + ' * Copyright (c) <%= grunt.template.today("yyyy") %>;\n' + ' * Licensed GPLv2+\n' + ' */\n';
@@ -170,18 +169,17 @@ module.exports = function (grunt) {
                 'release/svn/'
             ]
         },
-        eslint: {
-            src: [
-                'assets/js/**/*.js',
-                '!**/*.min.js'
-            ]
-        },
         uglify: {
-            dist: {
-                files: { 'assets/js/wp-todo.min.js': 'assets/js/wp-todo.js' },
-                options: { banner: compactBannerTemplate }
-            }
-        },
+              build: {
+                files: [{
+                    expand: true,
+                    src: 'assets/js/*.js',
+                    dest: './',
+                    // cwd: 'assets/js',
+                    ext: '.min.js'
+                }]
+              }
+            },
         sass: {
             dist: {
                 options: { sourceMap: true },
@@ -201,7 +199,6 @@ module.exports = function (grunt) {
         }
     });
     grunt.registerTask('scripts', [
-        'eslint',
         'uglify'
     ]);
     grunt.registerTask('styles', [
