@@ -5,8 +5,8 @@
  * Licensed under the GPLv2+ license.
  */
 
-/* globals console, jQuery, WPTodo */
-if ( ! window.hasOwnProperty( 'WPTodo' ) ) {
+/* globals console, jQuery, WPTodoBase */
+if ( ! window.hasOwnProperty( 'WPTodoBase' ) ) {
 
 	/*
 	 * Main Module.
@@ -14,7 +14,7 @@ if ( ! window.hasOwnProperty( 'WPTodo' ) ) {
 	 * This is where shared JS functionality and
 	 * properties can be accessed.
 	 */
-	window.WPTodo = ( function( $, pub ) {
+	window.WPTodoBase = ( function( $, pub ) {
 
 		pub.$wpTodo = $( '#wp-todo' );
 
@@ -32,5 +32,5 @@ if ( ! window.hasOwnProperty( 'WPTodo' ) ) {
 	} )( jQuery, {} );
 
 	// Load the public method.
-	WPTodo.loaded();
+	WPTodoBase.loaded();
 }

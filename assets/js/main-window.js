@@ -1,15 +1,15 @@
 /**
- * WP Todo Js.
+ * WP Todo Js for Main Window.
  * https://github.com/aubreypwd/wp-todo
  *
  * Licensed under the GPLv2+ license.
  */
 
-if ( ! window.hasOwnProperty( 'WPTodoMainWindow' ) && window.hasOwnProperty( 'WPTodo' ) ) {
-	/* globals jQuery, WPTodo */
+if ( ! window.hasOwnProperty( 'WPTodoBaseMainWindow' ) && window.hasOwnProperty( 'WPTodoBase' ) ) {
+	/* globals jQuery, WPTodoBase */
 
 	// Main window module.
-	window.WPTodoMainWindow = ( function ( $, pub ) {
+	window.WPTodoBaseMainWindow = ( function ( $, pub ) {
 
 		/**
 		 * Init.
@@ -20,7 +20,7 @@ if ( ! window.hasOwnProperty( 'WPTodoMainWindow' ) && window.hasOwnProperty( 'WP
 		function init () {
 
 			// Just show right away.
-			$( '.main-window', WPTodo.$wpTodo ).removeClass( 'hidden' );
+			$( '.main-window', WPTodoBase.$wpTodo ).removeClass( 'hidden' );
 		}
 
 		init(); // Initialize.
