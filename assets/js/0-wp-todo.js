@@ -8,7 +8,12 @@
 /* globals console, jQuery, WPTodo */
 if ( ! window.hasOwnProperty( 'WPTodo' ) ) {
 
-	// Main module.
+	/*
+	 * Main Module.
+	 *
+	 * This is where shared JS functionality and
+	 * properties can be accessed.
+	 */
 	window.WPTodo = ( function( $, pub ) {
 
 		pub.$wpTodo = $( '#wp-todo' );

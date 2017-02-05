@@ -8,7 +8,7 @@
 if ( ! window.hasOwnProperty( 'WPTodoMainWindow' ) && window.hasOwnProperty( 'WPTodo' ) ) {
 	/* globals jQuery, WPTodo */
 
-	// Main module.
+	// Main window module.
 	window.WPTodoMainWindow = ( function ( $, pub ) {
 
 		/**
