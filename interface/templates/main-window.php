@@ -8,5 +8,5 @@
 ?>
 
 <div class="main-window hidden">
-	<p><?php esc_html_e( 'Main Window', 'centralmarket' ); ?></p>
+	<?php include '../template-parts/main-window-content.php'; ?>
 </div>

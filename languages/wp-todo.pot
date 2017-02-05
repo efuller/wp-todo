@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WP Todo 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-todo\n"
-"POT-Creation-Date: 2017-02-05 05:52:53+00:00\n"
+"POT-Creation-Date: 2017-02-05 16:55:45+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "X-Generator: grunt-wp-i18n 0.5.4\n"
 
-#: interface/templates/main-window.php:11
+#: interface/template-parts/main-window-content.php:1
 msgid "Main Window"
 msgstr ""
 

@@ -127,6 +127,12 @@ class WPT_Interface {
 		}
 	}
 
+	/**
+	 * Enqueue scripts and styles.
+	 *
+	 * @author Aubrey Portwood
+	 * @since  1.0.0
+	 */
 	public function enqueue_scripts_and_styles() {
 
 		// wp-todo is concat down.
