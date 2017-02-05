@@ -3,7 +3,7 @@
  * Plugin Name: WP Todo
  * Plugin URI:  https://github.com/aubreypwd/wp-todo
  * Description: A todo for your WordPress powered site.
- * Version:     NEXT
+ * Version:     1.0.0
  * Author:      Aubrey Portwood and Eric Fuller
  * Author URI:  https://github.com/aubreypwd
  * Donate link: https://github.com/aubreypwd/wp-todo
@@ -14,7 +14,7 @@
  * @link https://github.com/aubreypwd/wp-todo
  *
  * @package WP Todo
- * @version NEXT
+ * @version 1.0.0
  */
 
 /**
@@ -38,7 +38,7 @@
 /**
  * Autoloads files with classes when needed.
  *
- * @since  NEXT
+ * @since  1.0.0
  * @author Aubrey Portwood
  *
  * @param  string $class_name Name of the class being requested.
@@ -46,13 +46,13 @@
  * @return void
  */
 function wp_todo_autoload_classes( $class_name ) {
-	if ( 0 !== strpos( $class_name, 'WPT_' ) ) {
+	if ( 0 !== strpos( $class_name, 'WP_Todo_' ) ) {
 		return;
 	}
 
 	$filename = strtolower( str_replace(
 		'_', '-',
-		substr( $class_name, strlen( 'WPT_' ) )
+		substr( $class_name, strlen( 'WP_Todo_' ) )
 	) );
 
 	WP_Todo::include_file( 'includes/class-' . $filename );
@@ -62,7 +62,7 @@ spl_autoload_register( 'wp_todo_autoload_classes' );
 /**
  * Main initiation class.
  *
- * @since  NEXT
+ * @since  1.0.0
  * @author Aubrey Portwood
  */
 final class WP_Todo {
@@ -72,7 +72,7 @@ final class WP_Todo {
 	 *
 	 * @var array
 	 *
-	 * @since  NEXT
+	 * @since  1.0.0
 	 * @author Aubrey Portwood
 	 */
 	protected $activation_errors = array();
@@ -82,15 +82,23 @@ final class WP_Todo {
 	 *
 	 * @var WP_Todo
 	 *
-	 * @since  NEXT
+	 * @since  1.0.0
 	 * @author Aubrey Portwood
 	 */
 	protected static $single_instance = null;
 
 	/**
+	 * Instance of WP_Todo_Interface
+	 *
+	 * @since1.0.0
+	 * @var WP_Todo_Interface
+	 */
+	protected $interface;
+
+	/**
 	 * Creates or returns an instance of this class.
 	 *
-	 * @since  NEXT
+	 * @since  1.0.0
 	 * @author Aubrey Portwood
 	 *
 	 * @return WP_Todo A single instance of this class.
@@ -107,7 +115,7 @@ final class WP_Todo {
 	 * Get plugin header information.
 	 *
 	 * @author Aubrey Portwood
-	 * @since  NEXT
+	 * @since  1.0.0
 	 *
 	 * @param  string $key The data you want from the header.
 	 * @return string      The data, empty string if nothing is found.
@@ -125,7 +133,7 @@ final class WP_Todo {
 	/**
 	 * Sets up our plugin.
 	 *
-	 * @since  NEXT
+	 * @since  1.0.0
 	 * @author Aubrey Portwood
 	 */
 	protected function __construct() {
@@ -135,20 +143,20 @@ final class WP_Todo {
 	/**
 	 * Attach other plugin classes to the base plugin class.
 	 *
-	 * @since  NEXT
+	 * @since  1.0.0
 	 * @author Aubrey Portwood
 	 *
 	 * @return void
 	 */
 	public function plugin_classes() {
 		// Attach other plugin classes to the base plugin class.
-		// $this->plugin_class = new WPT_Plugin_Class( $this );
+		$this->interface = new WP_Todo_Interface( $this );
 	} // END OF PLUGIN CLASSES FUNCTION
 
 	/**
 	 * Add hooks and filters.
 	 *
-	 * @since  NEXT
+	 * @since  1.0.0
 	 * @author Aubrey Portwood
 	 *
 	 * @return void
@@ -160,7 +168,7 @@ final class WP_Todo {
 	/**
 	 * Activate the plugin
 	 *
-	 * @since  NEXT
+	 * @since  1.0.0
 	 * @author Aubrey Portwood
 	 *
 	 * @return void
@@ -176,7 +184,7 @@ final class WP_Todo {
 	 *
 	 * Uninstall routines should be in uninstall.php
 	 *
-	 * @since  NEXT
+	 * @since  1.0.0
 	 * @author Aubrey Portwood
 	 *
 	 * @return void
@@ -186,7 +194,7 @@ final class WP_Todo {
 	/**
 	 * Init hook.
 	 *
-	 * @since  NEXT
+	 * @since  1.0.0
 	 * @author Aubrey Portwood
 	 *
 	 * @return void
@@ -199,7 +207,7 @@ final class WP_Todo {
 	 * Load the plugin text domain and classes.
 	 *
 	 * @author Aubrey Portwood
-	 * @since  NEXT
+	 * @since  1.0.0
 	 */
 	public function load_plugin_textdomain_plugin_classes() {
 
@@ -210,7 +218,7 @@ final class WP_Todo {
 	/**
 	 * Deactivates this plugin, hook this function on admin_init.
 	 *
-	 * @since  NEXT
+	 * @since  1.0.0
 	 * @author Aubrey Portwood
 	 *
 	 * @return void
@@ -224,7 +232,7 @@ final class WP_Todo {
 	/**
 	 * Include a file from the includes directory.
 	 *
-	 * @since  NEXT
+	 * @since  1.0.0
 	 * @author Aubrey Portwood
 	 * @param  string $filename Name of the file to be included.
 	 *
@@ -243,7 +251,7 @@ final class WP_Todo {
 	/**
 	 * This plugin's directory.
 	 *
-	 * @since  NEXT
+	 * @since  1.0.0
 	 * @author Aubrey Portwood
 	 * @param  string $path (optional) appended path.
 	 *
@@ -258,7 +266,7 @@ final class WP_Todo {
 	/**
 	 * This plugin's url.
 	 *
-	 * @since  NEXT
+	 * @since  1.0.0
 	 * @author Aubrey Portwood
 	 * @param  string $path (optional) appended path.
 	 *
@@ -278,7 +286,7 @@ final class WP_Todo {
  *
  * Wrapper for WP_Todo::get_instance().
  *
- * @since  NEXT
+ * @since  1.0.0
  * @author Aubrey Portwood
  *
  * @return WP_Todo  Singleton instance of plugin class.
