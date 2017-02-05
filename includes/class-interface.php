@@ -130,15 +130,24 @@ class WPT_Interface {
 	public function enqueue_scripts_and_styles() {
 
 		// The scripts in assets/js you want to load.
-		$scripts = array(
-			'wp-todo.js', // Main plugin Js.
-		);
+		$scripts = scandir( dirname( __FILE__ ) . '/../assets/js' );
 
 		// wp-todo is concat down.
 		wp_enqueue_style( 'wp-todo', plugins_url( '../assets/css/wp-todo.css', __FILE__ ), array(), '1.0.0' );
 
 		foreach ( $scripts as $script ) {
-			wp_enqueue_script( 'wp-todo', plugins_url( "../assets/js/$script", __FILE__ ), array( 'jquery' ), '1.0.0', true );
+			if ( '..' !== $script && '.' !== $script ) {
+
+				if ( stristr( $script, '.min.' ) && ( ! defined( 'SCRIPT_DEBUG' ) || ! SCRIPT_DEBUG ) ) {
+
+					// Only load .min. files when SCRIPT_DEBUG is off.
+					wp_enqueue_script( 'wp-todo', plugins_url( "../assets/js/$script", __FILE__ ), array( 'jquery' ), wp_todo()->get_plugin_info( 'Version' ), true );
+				} elseif ( ! stristr( $script, '.min.' ) ) {
+
+					// Load non-minified files when SCRIPT_DEBUG is set.
+					wp_enqueue_script( 'wp-todo', plugins_url( "../assets/js/$script", __FILE__ ), array( 'jquery' ), wp_todo()->get_plugin_info( 'Version' ), true );
+				}
+			}
 		}
 	}
 
