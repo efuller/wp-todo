@@ -19,13 +19,13 @@ if ( ! window.hasOwnProperty( 'WPTodo' ) ) {
 		 * @author Aubrey Portwood
 		 * @since  1.0.0
 		 */
-		pub.publicMethod = function () {
-			console.log( 'I\'m public yo!' );
+		pub.loaded = function () {
+			console.log( 'wp-todo Js loaded.' );
 		};
 
 		return pub; // Return public things.
 	} )( jQuery, {} );
 
 	// Load the public method.
-	WPTodo.publicMethod();
+	WPTodo.loaded();
 }
