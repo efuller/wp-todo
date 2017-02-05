@@ -8,6 +8,12 @@
 // The main container.
 #wp-todo {
 
+	&.admin {
+		.main-window {
+			background: red;
+		}
+	}
+
 	// The main window.
 	.main-window {
 		background: green;

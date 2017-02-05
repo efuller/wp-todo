@@ -147,8 +147,6 @@ class WPT_Interface {
 					wp_enqueue_script( $script_name, plugins_url( "../assets/js/$script", __FILE__ ), array( 'jquery' ), wp_todo()->get_plugin_info( 'Version' ), true );
 				} elseif ( ! stristr( $script, '.min.' ) ) {
 
-					error_log( print_r( array( $script_name, $script, __LINE__ ), true ) );
-
 					// Load non-minified files when SCRIPT_DEBUG is set.
 					wp_enqueue_script( $script_name, plugins_url( "../assets/js/$script", __FILE__ ), array( 'jquery' ), wp_todo()->get_plugin_info( 'Version' ), true );
 				}

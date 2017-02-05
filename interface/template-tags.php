@@ -18,8 +18,20 @@
  */
 function wpt_container() {
 	?>
-	<div id="wp-todo">
+	<div id="wp-todo" class="<?php wpt_admin_class(); ?>">
 		<?php include 'templates/main-window.php'; ?>
 	</div>
 	<?php
+}
+
+/**
+ * Add an admin class if it's the admin.
+ *
+ * @author Aubrey Portwood
+ * @since  1.0.0
+ */
+function wpt_admin_class() {
+	if ( is_admin() ) {
+		echo 'admin';
+	}
 }
