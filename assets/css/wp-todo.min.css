@@ -1,0 +1,9 @@
+/**
+ * WP Todo - v1.0.0 - 2017-02-04
+ * https://github.com/aubreypwd
+ *
+ * Copyright (c) 2017;
+ * Licensed GPLv2+
+ */
+
+#wp-todo .main-window{background:green;bottom:0;color:#fff;display:block;height:250px;position:absolute;right:0;width:450px}#wp-todo .main-window p{padding:20px 0;text-align:center}#wp-todo .main-window.hidden{display:none}

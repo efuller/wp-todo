@@ -185,7 +185,7 @@ module.exports = function (grunt) {
         sass: {
             dist: {
                 options: { sourceMap: true },
-                files: { 'assets/css/wp-todo.css': 'assets/css/sass/styles.scss' }
+                files: { 'assets/css/wp-todo.css': 'assets/css/sass/import.scss' }
             }
         },
         cssmin: { dist: { files: { 'assets/css/wp-todo.min.css': 'assets/css/wp-todo.css' } } },

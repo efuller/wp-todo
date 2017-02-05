@@ -1,0 +1,29 @@
+/**
+ * WP Todo
+ * https://github.com/aubreypwd/wp-todo
+ *
+ * Copyright (c) 2017 Aubrey Portwood and Eric Fuller
+ * Licensed under the GPLv2+ license.
+ */
+/**
+ * Main Window.
+ *
+ * @since 1.0.0
+ * @package WP Todo
+ */
+#wp-todo .main-window {
+  background: green;
+  bottom: 0;
+  color: white;
+  display: block;
+  height: 250px;
+  position: absolute;
+  right: 0;
+  width: 450px; }
+  #wp-todo .main-window p {
+    padding: 20px 0;
+    text-align: center; }
+  #wp-todo .main-window.hidden {
+    display: none; }
+
+/*# sourceMappingURL=wp-todo.css.map */

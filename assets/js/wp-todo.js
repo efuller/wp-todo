@@ -1,27 +1,49 @@
 /**
- * WP Todo
+ * WP Todo Js.
  * https://github.com/aubreypwd/wp-todo
  *
  * Licensed under the GPLv2+ license.
  */
 
-window.WPTodo = window.WPTodo || {};
+if ( ! window.hasOwnProperty( 'WPTodo' ) ) {
+	/* globals console, jQuery */
 
-( function( window, document, $, plugin ) {
-	var $c = {};
+	// Main module.
+	window.WPTodo = ( function ( $, pub ) {
 
-	plugin.init = function() {
-		plugin.cache();
-		plugin.bindEvents();
-	};
+		/**
+		 * The main container.
+		 *
+		 * @author Aubrey Portwood
+		 * @since  1.0.0
+		 *
+		 * @type {object} jQuery object.
+		 */
+		var $wpTodo = $( '#wp-todo' );
 
-	plugin.cache = function() {
-		$c.window = $( window );
-		$c.body = $( document.body );
-	};
+		/**
+		 * Init.
+		 *
+		 * @author Aubrey Portwood
+		 * @since  1.0.0
+		 */
+		function init () {
 
-	plugin.bindEvents = function() {
-	};
+			// Just show right away.
+			$( '.main-window', $wpTodo ).removeClass( 'hidden' );
+		}
 
-	$( plugin.init );
-}( window, document, jQuery, window.WPTodo ) );
+		/**
+		 * A public function.
+		 *
+		 * @author Aubrey Portwood
+		 * @since  1.0.0
+		 */
+		pub.publicMethod = function () {
+			console.log( 'I\'m public yo!' );
+		};
+
+		init(); // Initialize.
+		return pub; // Return public things.
+	} )( jQuery, {} );
+}

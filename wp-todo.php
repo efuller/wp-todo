@@ -46,13 +46,13 @@
  * @return void
  */
 function wp_todo_autoload_classes( $class_name ) {
-	if ( 0 !== strpos( $class_name, 'WP_Todo_' ) ) {
+	if ( 0 !== strpos( $class_name, 'WPT_' ) ) {
 		return;
 	}
 
 	$filename = strtolower( str_replace(
 		'_', '-',
-		substr( $class_name, strlen( 'WP_Todo_' ) )
+		substr( $class_name, strlen( 'WPT_' ) )
 	) );
 
 	WP_Todo::include_file( 'includes/class-' . $filename );
@@ -88,10 +88,10 @@ final class WP_Todo {
 	protected static $single_instance = null;
 
 	/**
-	 * Instance of WP_Todo_Interface
+	 * Instance of WPT_Interface
 	 *
 	 * @since1.0.0
-	 * @var WP_Todo_Interface
+	 * @var WPT_Interface
 	 */
 	protected $interface;
 
@@ -150,7 +150,7 @@ final class WP_Todo {
 	 */
 	public function plugin_classes() {
 		// Attach other plugin classes to the base plugin class.
-		$this->interface = new WP_Todo_Interface( $this );
+		$this->interface = new WPT_Interface( $this );
 	} // END OF PLUGIN CLASSES FUNCTION
 
 	/**
