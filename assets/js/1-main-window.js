@@ -9,7 +9,7 @@ if ( ! window.hasOwnProperty( 'WPTodoMainWindow' ) && window.hasOwnProperty( 'WP
 	/* globals jQuery, WPTodo */
 
 	// Main module.
-	window.WPTodoMainWindow = ( function ( $, pub, WPTodo ) {
+	window.WPTodoMainWindow = ( function ( $, pub ) {
 
 		/**
 		 * Init.
@@ -26,5 +26,5 @@ if ( ! window.hasOwnProperty( 'WPTodoMainWindow' ) && window.hasOwnProperty( 'WP
 		init(); // Initialize.
 
 		return pub; // Return public things.
-	} )( jQuery, {}, WPTodo );
+	} )( jQuery, {} );
 }
