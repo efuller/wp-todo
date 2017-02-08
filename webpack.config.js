@@ -1,9 +1,12 @@
 const path = require('path');
 
+// Let's use browser sync.
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+
 const config = {
 	entry: [
-		'./app/scss/index.scss',
-		'./app/index'
+		// './src/scss/index.scss',
+		'./src/index'
 	],
 	output: {
 		filename: 'bundle.js',
@@ -22,6 +25,15 @@ const config = {
 			}
 		]
 	},
+	plugins: [
+		new BrowserSyncPlugin({
+			open: false,
+			injectChanges: true,
+			host: 'localhost',
+			port: '3000',
+			proxy: 'learnwp.dev'
+		})
+	],
 	devtool: 'inline-source-map'
 };
 
