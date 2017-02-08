@@ -142,7 +142,7 @@ class WPT_Interface {
 		$ext = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? 'js' : 'min.js';
 
 		// Enqueue scripts.
-		wp_enqueue_script( 'wp-todo-main-window', plugins_url( "../assets/js/bundle.{$ext}", __FILE__ ), array( ), wp_todo()->get_plugin_info( 'Version' ), true );
+		wp_enqueue_script( 'wp-todo-main-window', plugins_url( "../assets/js/bundle.{$ext}", __FILE__ ), array( 'jquery' ), wp_todo()->get_plugin_info( 'Version' ), true );
 	}
 
 	/**

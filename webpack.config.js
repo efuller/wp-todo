@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 // Let's use browser sync.
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
@@ -24,6 +25,9 @@ const config = {
 			}
 		]
 	},
+	externals: {
+		'jQuery': 'jQuery'
+	},
 	plugins: [
 		new BrowserSyncPlugin({
 			open: false,
@@ -31,7 +35,7 @@ const config = {
 			host: 'localhost',
 			port: '3000',
 			proxy: 'learnwp.dev'
-		})
+		}),
 	],
 	devtool: 'inline-source-map'
 };
