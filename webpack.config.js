@@ -5,7 +5,6 @@ const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 const config = {
 	entry: [
-		// './src/scss/index.scss',
 		'./src/index'
 	],
 	output: {
