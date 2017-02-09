@@ -47,7 +47,7 @@ ajv-keywords@^1.1.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-1.5.1.tgz#314dd0a4b3368fad3dfcdc54ede6171b886daf3c"
 
-ajv@^4.7.0:
+ajv@^4.11.2, ajv@^4.7.0:
   version "4.11.2"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-4.11.2.tgz#f166c3c11cbc6cb9dcc102a5bcfe5b72c95287e6"
   dependencies:
@@ -1210,6 +1210,17 @@ core-util-is@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
 
+cosmiconfig@^2.1.0, cosmiconfig@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/cosmiconfig/-/cosmiconfig-2.1.1.tgz#817f2c2039347a1e9bf7d090c0923e53f749ca82"
+  dependencies:
+    js-yaml "^3.4.3"
+    minimist "^1.2.0"
+    object-assign "^4.1.0"
+    os-homedir "^1.0.1"
+    parse-json "^2.2.0"
+    require-from-string "^1.1.0"
+
 crc32-stream@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/crc32-stream/-/crc32-stream-1.0.1.tgz#ce2c5dc3bd8ffb3830f9cb47f540222c63c90fab"
@@ -1670,6 +1681,15 @@ extglob@^0.3.1:
   resolved "https://registry.yarnpkg.com/extglob/-/extglob-0.3.2.tgz#2e18ff3d2f49ab2765cec9023f011daa8d8349a1"
   dependencies:
     is-extglob "^1.0.0"
+
+extract-text-webpack-plugin@beta:
+  version "2.0.0-rc.3"
+  resolved "https://registry.yarnpkg.com/extract-text-webpack-plugin/-/extract-text-webpack-plugin-2.0.0-rc.3.tgz#7381aa7869ce26d4b39a7bab71cf09e5a38432b2"
+  dependencies:
+    ajv "^4.11.2"
+    async "^2.1.2"
+    loader-utils "^0.2.16"
+    webpack-sources "^0.1.0"
 
 extsprintf@1.0.2:
   version "1.0.2"
@@ -2496,19 +2516,19 @@ js-tokens@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.1.tgz#08e9f132484a2c45a30907e9dc4d5567b7f114d7"
 
+js-yaml@^3.4.3, js-yaml@~3.5.2:
+  version "3.5.5"
+  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.5.5.tgz#0377c38017cabc7322b0d1fbcd25a491641f2fbe"
+  dependencies:
+    argparse "^1.0.2"
+    esprima "^2.6.0"
+
 js-yaml@~2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-2.0.5.tgz#a25ae6509999e97df278c6719da11bd0687743a8"
   dependencies:
     argparse "~ 0.1.11"
     esprima "~ 1.0.2"
-
-js-yaml@~3.5.2:
-  version "3.5.5"
-  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.5.5.tgz#0377c38017cabc7322b0d1fbcd25a491641f2fbe"
-  dependencies:
-    argparse "^1.0.2"
-    esprima "^2.6.0"
 
 js-yaml@~3.7.0:
   version "3.7.0"
@@ -3312,6 +3332,38 @@ postcss-filter-plugins@^2.0.0:
     postcss "^5.0.4"
     uniqid "^4.0.0"
 
+postcss-load-config@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/postcss-load-config/-/postcss-load-config-1.1.0.tgz#1c3c217608642448c03bebf3c32b1b28985293f9"
+  dependencies:
+    cosmiconfig "^2.1.0"
+    object-assign "^4.1.0"
+    postcss-load-options "^1.1.0"
+    postcss-load-plugins "^2.2.0"
+
+postcss-load-options@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/postcss-load-options/-/postcss-load-options-1.1.0.tgz#e39215d154a19f69f9cb6052bffad4a82f09f354"
+  dependencies:
+    cosmiconfig "^2.1.0"
+    object-assign "^4.1.0"
+
+postcss-load-plugins@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/postcss-load-plugins/-/postcss-load-plugins-2.2.0.tgz#84ef9cf36e637810ac5265e03f6d4c48ead83314"
+  dependencies:
+    cosmiconfig "^2.1.1"
+    object-assign "^4.1.0"
+
+postcss-loader@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/postcss-loader/-/postcss-loader-1.2.2.tgz#bbf4e19a8cde85597e0c9bfd96015fe775a157ac"
+  dependencies:
+    loader-utils "^0.2.16"
+    object-assign "^4.1.0"
+    postcss "^5.2.9"
+    postcss-load-config "^1.1.0"
+
 postcss-merge-idents@^2.1.5:
   version "2.1.7"
   resolved "https://registry.yarnpkg.com/postcss-merge-idents/-/postcss-merge-idents-2.1.7.tgz#4c5530313c08e1d5b3bbf3d2bbc747e278eea270"
@@ -3480,7 +3532,7 @@ postcss-zindex@^2.0.1:
     postcss "^5.0.4"
     uniqs "^2.0.0"
 
-postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.13, postcss@^5.0.14, postcss@^5.0.16, postcss@^5.0.2, postcss@^5.0.4, postcss@^5.0.5, postcss@^5.0.6, postcss@^5.0.8, postcss@^5.2.11:
+postcss@^5.0.10, postcss@^5.0.11, postcss@^5.0.12, postcss@^5.0.13, postcss@^5.0.14, postcss@^5.0.16, postcss@^5.0.2, postcss@^5.0.4, postcss@^5.0.5, postcss@^5.0.6, postcss@^5.0.8, postcss@^5.2.11, postcss@^5.2.9:
   version "5.2.12"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-5.2.12.tgz#6a2b15e35dd65634441bb0961fa796904c7890e0"
   dependencies:
@@ -3781,6 +3833,10 @@ request@2.78.0:
 require-directory@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/require-directory/-/require-directory-2.1.1.tgz#8c64ad5fd30dab1c976e2344ffe7f792a6a6df42"
+
+require-from-string@^1.1.0:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/require-from-string/-/require-from-string-1.2.1.tgz#529c9ccef27380adfec9a2f965b649bbee636418"
 
 require-main-filename@^1.0.1:
   version "1.0.1"
@@ -4377,7 +4433,7 @@ watchpack@^1.2.0:
     chokidar "^1.4.3"
     graceful-fs "^4.1.2"
 
-webpack-sources@^0.1.4:
+webpack-sources@^0.1.0, webpack-sources@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-0.1.4.tgz#ccc2c817e08e5fa393239412690bb481821393cd"
   dependencies:
@@ -4502,7 +4558,7 @@ yargs-parser@^2.4.1:
     camelcase "^3.0.0"
     lodash.assign "^4.0.6"
 
-yargs-parser@^4.1.0, yargs-parser@^4.2.0:
+yargs-parser@^4.1.0:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-4.2.1.tgz#29cceac0dc4f03c6c87b4a9f217dd18c9f74871c"
   dependencies:
@@ -4519,7 +4575,7 @@ yargs@3.29.0:
     window-size "^0.1.2"
     y18n "^3.2.0"
 
-yargs@6.4.0:
+yargs@6.4.0, yargs@^6.0.0:
   version "6.4.0"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-6.4.0.tgz#816e1a866d5598ccf34e5596ddce22d92da490d4"
   dependencies:
@@ -4556,24 +4612,6 @@ yargs@^4.7.1:
     window-size "^0.2.0"
     y18n "^3.2.1"
     yargs-parser "^2.4.1"
-
-yargs@^6.0.0:
-  version "6.6.0"
-  resolved "https://registry.yarnpkg.com/yargs/-/yargs-6.6.0.tgz#782ec21ef403345f830a808ca3d513af56065208"
-  dependencies:
-    camelcase "^3.0.0"
-    cliui "^3.2.0"
-    decamelize "^1.1.1"
-    get-caller-file "^1.0.1"
-    os-locale "^1.4.0"
-    read-pkg-up "^1.0.1"
-    require-directory "^2.1.1"
-    require-main-filename "^1.0.1"
-    set-blocking "^2.0.0"
-    string-width "^1.0.2"
-    which-module "^1.0.0"
-    y18n "^3.2.1"
-    yargs-parser "^4.2.0"
 
 yargs@~3.10.0:
   version "3.10.0"

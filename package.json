@@ -9,6 +9,7 @@
   },
   "scripts": {
     "start": "webpack --watch",
+    "build": "NODE_ENV=production webpack -p --config webpack.prod.config.js --progress --colors",
     "test": "dockunit",
     "preversion": "npm test",
     "version": "grunt version && git add ."
@@ -38,7 +39,9 @@
   "dependencies": {
     "babel-polyfill": "^6.22.0",
     "css-loader": "^0.26.1",
+    "extract-text-webpack-plugin": "beta",
     "node-sass": "^4.5.0",
+    "postcss-loader": "^1.2.2",
     "sass-loader": "^4.1.1",
     "style-loader": "^0.13.1"
   }
