@@ -9,6 +9,8 @@
  */
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 /**
@@ -34,7 +36,10 @@ const config = {
 			},
 			{
 				test: /\.scss$/,
-				loaders: ["style-loader", "css-loader", "sass-loader"]
+				loader: ExtractTextPlugin.extract({
+					fallbackLoader: 'style-loader',
+					loader: "css-loader!postcss-loader!sass-loader",
+				}),
 			}
 		]
 	},
@@ -44,6 +49,16 @@ const config = {
 	},
 	// Webpack plugins - These are like addons that can provide additional functionality.
 	plugins: [
+		// Extract the CSS file.
+		new ExtractTextPlugin('../css/wp-todo.css'),
+		// Configure autoprefixer.
+		new webpack.LoaderOptionsPlugin({
+			options: {
+				postcss: [
+					autoprefixer(),
+				]
+			}
+		}),
 		// Browsersync is a better option when working in a WordPress environment.
 		new BrowserSyncPlugin({
 			open: false,
