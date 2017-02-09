@@ -30,3 +30,8 @@ yarn start
 // View it.
 Visit http://localhost:3000
 ```
+
+#### Production Build
+To compile the JS and CSS for production, run the following:
+
+`yarn run build`
