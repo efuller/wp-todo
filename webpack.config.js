@@ -1,7 +1,7 @@
 /**
  * Webpack Development Config
  *
- * @module	config Configuration options
+ * @module config Configuration options
  */
 
 /**
