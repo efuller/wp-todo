@@ -6,10 +6,10 @@
 
 // User imports
 import $ from 'jQuery';
+import WPTodo from './WPTodo';
 import './scss/index.scss';
-import './app';
 
 // Initialize our app when the page is ready.
 $( function() {
-	console.log( 'Initialize the app here!' );
+	new WPTodo().init();
 });
