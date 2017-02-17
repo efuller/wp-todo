@@ -12,11 +12,6 @@
 
 # File Options
 files:
-  ignore:
-    - 'sass/vendor/**/*.scss'
-    - 'sass/tests/**/*.scss'
-    - 'bourbon/app/**/*.scss'
-    - 'bourbon-neat/app/**/*.scss'
 
 # Rule Configuration
 rules:
