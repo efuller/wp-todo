@@ -43,6 +43,7 @@
     "css-loader": "^0.26.1",
     "eslint-config-wordpress": "^1.1.0",
     "extract-text-webpack-plugin": "beta",
+    "mitt": "^1.0.1",
     "node-sass": "^4.5.0",
     "postcss-loader": "^1.2.2",
     "sass-loader": "^4.1.1",
