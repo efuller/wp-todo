@@ -12,4 +12,4 @@ import './app';
 // Initialize our app when the page is ready.
 $( function() {
 	console.log( 'Initialize the app here!' );
-} );
+});
