@@ -16,6 +16,7 @@
   },
   "license": "GPLv2",
   "devDependencies": {
+    "autoprefixer": "^6.7.3",
     "babel-cli": "^6.22.2",
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",
@@ -34,6 +35,7 @@
     "grunt-wp-deploy": "latest",
     "grunt-wp-i18n": "latest",
     "load-grunt-tasks": "latest",
+    "mustache-loader": "^0.4.1",
     "webpack": "^2.2.1"
   },
   "dependencies": {
