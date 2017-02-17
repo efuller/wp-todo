@@ -7,27 +7,6 @@ module.exports = function (grunt) {
     grunt.initConfig({
         pkg: pkg,
         watch: {
-            styles: {
-                files: [
-                    'assets/**/*.css',
-                    'assets/**/*.scss'
-                ],
-                tasks: ['styles'],
-                options: {
-                    spawn: false,
-                    livereload: true,
-                    debounceDelay: 500
-                }
-            },
-            scripts: {
-                files: ['assets/**/*.js'],
-                tasks: ['scripts'],
-                options: {
-                    spawn: false,
-                    livereload: true,
-                    debounceDelay: 500
-                }
-            },
             php: {
                 files: [
                     '**/*.php',
@@ -169,24 +148,6 @@ module.exports = function (grunt) {
                 'release/svn/'
             ]
         },
-        uglify: {
-              build: {
-                files: [{
-                    expand: true,
-                    src: 'assets/js/*.js',
-                    dest: './',
-                    // cwd: 'assets/js',
-                    ext: '.min.js'
-                }]
-              }
-            },
-        sass: {
-            dist: {
-                options: { sourceMap: true },
-                files: { 'assets/css/wp-todo.css': 'assets/css/sass/import.scss' }
-            }
-        },
-        cssmin: { dist: { files: { 'assets/css/wp-todo.min.css': 'assets/css/wp-todo.css' } } },
         usebanner: {
             taskName: {
                 options: {
@@ -198,12 +159,9 @@ module.exports = function (grunt) {
             }
         }
     });
-    grunt.registerTask('scripts', [
-        'uglify'
-    ]);
     grunt.registerTask('styles', [
-        'sass',
-        'cssmin',
+        // 'sass',
+        // 'cssmin',
         'usebanner'
     ]);
     grunt.registerTask('php', [
@@ -211,8 +169,6 @@ module.exports = function (grunt) {
         'makepot'
     ]);
     grunt.registerTask('default', [
-        'styles',
-        'scripts',
         'php'
     ]);
     grunt.registerTask('version', [

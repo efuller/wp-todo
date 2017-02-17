@@ -1,34 +1,4 @@
-/**
- * WP Todo
- * https://github.com/aubreypwd/wp-todo
- *
- * Copyright (c) 2017 Aubrey Portwood and Eric Fuller
- * Licensed under the GPLv2+ license.
- *
- * @TODO If there is an automatic way to do this, PLEASE can we do it!?
- */
-/**
- * Main Window.
- *
- * @since 1.0.0
- * @package WP Todo
- */
-#wp-todo.admin .main-window {
-  background: red; }
+body {
+  background: goldenrod !important; }
 
-#wp-todo .main-window {
-  background: green;
-  bottom: 0;
-  color: white;
-  display: block;
-  height: 250px;
-  position: absolute;
-  right: 0;
-  width: 450px; }
-  #wp-todo .main-window p {
-    padding: 20px 0;
-    text-align: center; }
-  #wp-todo .main-window.hidden {
-    display: none; }
-
-/*# sourceMappingURL=wp-todo.css.map */
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9jc3Mvd3AtdG9kby5jc3MiLCJzb3VyY2VSb290IjoiIn0=*/

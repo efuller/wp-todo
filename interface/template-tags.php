@@ -18,9 +18,7 @@
  */
 function wpt_container() {
 	?>
-	<div id="wp-todo" class="<?php wpt_admin_class(); ?>">
-		<?php include 'templates/main-window.php'; ?>
-	</div>
+	<div id="wp-todo" class="<?php wpt_admin_class(); ?>"></div>
 	<?php
 }
 

@@ -1,10 +1,1 @@
-{
-	"version": 3,
-	"file": "wp-todo.css",
-	"sources": [
-		"sass/import.scss",
-		"sass/_main-window.scss"
-	],
-	"names": [],
-	"mappings": "AAAA;;;;;;;;GAQG;ACRH;;;;;GAKG;AAGH,AAGE,QAHM,AAEP,MAAO,CACN,YAAY,CAAC;EACZ,UAAU,EAAE,GAAG,GACf;;AALH,AASC,QATO,CASP,YAAY,CAAC;EACZ,UAAU,EAAE,KAAK;EACjB,MAAM,EAAE,CAAC;EACT,KAAK,EAAE,KAAK;EACZ,OAAO,EAAE,KAAK;EACd,MAAM,EAAE,KAAK;EACb,QAAQ,EAAE,QAAQ;EAClB,KAAK,EAAE,CAAC;EACR,KAAK,EAAE,KAAK,GAUZ;EA3BF,AAmBE,QAnBM,CASP,YAAY,CAUX,CAAC,CAAC;IACD,OAAO,EAAE,MAAM;IACf,UAAU,EAAE,MAAM,GAClB;EAtBH,AASC,QATO,CASP,YAAY,AAeX,OAAQ,CAAC;IACR,OAAO,EAAE,IAAI,GACb"
-}
+{"version":3,"file":"../css/wp-todo.css","sources":[],"mappings":"","sourceRoot":""}
