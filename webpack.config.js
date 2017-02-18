@@ -46,6 +46,10 @@ const config = {
 					fallbackLoader: 'style-loader',
 					loader: 'css-loader!postcss-loader!sass-loader'
 				})
+			},
+			{
+				test: /\.html$/,
+				loader: 'mustache-loader'
 			}
 		]
 	},
