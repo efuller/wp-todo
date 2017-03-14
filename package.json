@@ -10,6 +10,8 @@
   "scripts": {
     "start": "webpack --watch",
     "build": "NODE_ENV=production webpack -p --config webpack.prod.config.js --progress --colors",
+    "test:app": "babel-tape-runner test/**/*.test.js | tap-spec",
+    "test:tdd": "nodemon -x \"babel-tape-runner test/**/*.test.js | tap-spec\"",
     "test": "dockunit",
     "preversion": "npm test",
     "version": "grunt version && git add ."
@@ -21,6 +23,7 @@
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",
     "babel-preset-es2015": "^6.22.0",
+    "babel-tape-runner": "^2.0.1",
     "browser-sync": "^2.18.7",
     "browser-sync-webpack-plugin": "^1.1.4",
     "del": "latest",
@@ -36,6 +39,10 @@
     "grunt-wp-i18n": "latest",
     "load-grunt-tasks": "latest",
     "mustache-loader": "^0.4.1",
+    "nodemon": "^1.11.0",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.3",
+    "uuid": "^3.0.1",
     "webpack": "^2.2.1"
   },
   "dependencies": {
