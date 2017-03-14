@@ -45,7 +45,7 @@ module.exports = {
 		'linebreak-style': ['error', 'unix'],
 		// Enforces empty lines around comments
 		'lines-around-comment': ['error', {
-			beforeLineComment: true
+			beforeLineComment: false
 		}],
 		// Disallow mixed spaces and tabs for indentation
 		'no-mixed-spaces-and-tabs': 'error',
@@ -57,6 +57,8 @@ module.exports = {
 		'no-with': 'error',
 		// Require or disallow an newline around variable declarations
 		'one-var-declaration-per-line': ['error', 'initializations'],
+		// One var
+		'one-var': 'off',
 		// Enforce operators to be placed before or after line breaks
 		'operator-linebreak': ['error', 'after'],
 		// Require or disallow use of semicolons instead of ASI
