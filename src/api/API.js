@@ -1,8 +1,8 @@
 import delay from './delay';
-import uuid from 'uuid';
 
 const data = {
 	primaryList: 1,
+	activeList: 3,
 	lists: [
 		{
 			id: 1,
@@ -24,7 +24,7 @@ const data = {
 					title: 'Here is todo number 2',
 					description: 'Here is the description for number 1',
 					deleted: false,
-					completed: true
+					completed: false
 				},
 				{
 					id: 3,
@@ -135,6 +135,18 @@ class API {
 	}
 
 	/**
+	 * Get the current active list.
+	 * @returns {Promise}
+	 */
+	static getActiveList() {
+		return new Promise( ( resolve ) => {
+			setTimeout( () => {
+				resolve( data.activeList );
+			}, delay );
+		});
+	}
+
+	/**
 	 * Get lists.
 	 * By default, get all lists.
 	 * @returns {Promise} lists   The list items.
@@ -189,7 +201,7 @@ class API {
 							return list.id === listId;
 						});
 						data.lists.splice( listIndex, 1 );
-						resolve( list);
+						resolve( list );
 					});
 			}, delay );
 		});
@@ -269,7 +281,7 @@ class API {
 	 */
 	static completeTodo( listId, todoId ) {
 		return new Promise( ( resolve ) => {
-			API.getTodos( listId, todoId )
+			API.getTodos( listId )
 				.then( ( todos ) => {
 					const todoIndex = todos.findIndex( todo => {
 						return todo.id === todoId;
