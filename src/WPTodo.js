@@ -1,9 +1,12 @@
+import ToDoList from './components/ToDoList';
+
 class WPTodo {
 	constructor() {
+		this.todoList = new ToDoList();
 	}
 
 	init() {
-		console.log( 'WPTodo initializer.' );
+		this.todoList.render();
 	}
 }
 
