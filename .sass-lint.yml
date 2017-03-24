@@ -110,7 +110,7 @@ rules:
   property-units:
     - 1
     -
-      per-property: { width: ['rem', 'vw'], height: ['rem', 'vh'], margin: ['rem'], padding: ['rem'] }
+      per-property: { width: ['px', 'rem', 'vw'], height: ['px', 'rem', 'vh'], margin: ['px', 'rem'], padding: ['px', 'rem'] }
 
   quotes:
     - 1
