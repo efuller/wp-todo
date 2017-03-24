@@ -1,0 +1,16 @@
+//--------------------------------------------------------------
+// MENUS
+//--------------------------------------------------------------
+#wp-todo {
+
+	.wp-todo-menu {
+		align-items: center;
+		border-bottom: 1px solid $color-gray;
+		border-top: 1px solid $color-gray;
+		display: flex;
+		justify-content: space-around;
+		list-style: none;
+		margin: 0;
+		padding: 5px 10px;
+	}
+}

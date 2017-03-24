@@ -1,0 +1,19 @@
+//--------------------------------------------------------------
+// HEADER
+//--------------------------------------------------------------
+#wp-todo {
+
+	.wp-todo-header {
+		align-items: center;
+		display: flex;
+		height: 60px;
+		padding: 0 20px;
+
+		h3 {
+			font-weight: 300;
+			line-height: 1;
+			margin: 0;
+			text-transform: uppercase;
+		}
+	}
+}

@@ -1,0 +1,26 @@
+//--------------------------------------------------------------
+// CONTENT
+//--------------------------------------------------------------
+#wp-todo {
+
+	.panel-hidden {
+		background: $color-white;
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		transform: translateX(100%);
+		transition: transform 0.3s ease-out;
+		width: 100%;
+		z-index: 2;
+	}
+
+	.panel-show {
+		transform: translateX(0);
+	}
+
+	.wp-todo-content {
+		min-height: 310px;
+		position: relative;
+	}
+}

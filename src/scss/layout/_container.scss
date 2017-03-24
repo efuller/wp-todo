@@ -1,0 +1,14 @@
+//--------------------------------------------------------------
+// CONTAINER
+//--------------------------------------------------------------
+#wp-todo {
+	background: $color-white;
+	border: 1px solid $color-gray;
+	bottom: 0;
+	height: 450px;
+	position: fixed;
+	right: 0;
+	transform: translateX(0);
+	width: 450px;
+	z-index: 100;
+}

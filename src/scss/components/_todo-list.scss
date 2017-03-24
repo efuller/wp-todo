@@ -1,0 +1,45 @@
+//--------------------------------------------------------------
+// TODO LIST
+//--------------------------------------------------------------
+#wp-todo {
+
+	.wp-todo-list {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.wp-todo-list-item {
+		border-bottom: 1px solid $color-gray;
+		display: flex;
+		padding: 10px 5px;
+	}
+
+	.wp-todo-task-input-container {
+		display: flex;
+		width: 100%;
+
+		input {
+			border: 0;
+			font-size: 14px;
+			padding: 0 5px;
+			width: 100%;
+
+			&:active,
+			&:focus {
+				border: 1px solid lighten($color-gray, 10%);
+				outline: none;
+			}
+		}
+	}
+
+	.wp-todo-complete-container,
+	.wp-todo-task-delete-container {
+		width: 30px;
+	}
+
+	.wp-todo-task-delete-container {
+		display: flex;
+		margin-left: 10px;
+	}
+}

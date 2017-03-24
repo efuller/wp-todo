@@ -1,0 +1,55 @@
+//--------------------------------------------------------------
+// LOADER
+//--------------------------------------------------------------
+#wp-todo {
+	.wp-todo-loader-container {
+		align-items: center;
+		background: $color-white;
+		display: flex;
+		height: 100%;
+		justify-content: center;
+		position: absolute;
+		width: 100%;
+	}
+
+	.wp-todo-loader,
+	.wp-todo-loader::after {
+		border-radius: 50%;
+		height: 50px;
+		width: 50px;
+	}
+
+	.wp-todo-loader {
+		animation: load8 1.1s infinite linear;
+		border-bottom: 1.1em solid rgba($color-black, 0.2);
+		border-left: 1.1em solid $color-white;
+		border-right: 1.1em solid rgba($color-black, 0.2);
+		border-top: 1.1em solid rgba($color-black, 0.2);
+		font-size: 10px;
+		position: relative;
+		text-indent: -9999em;
+		transform: translateZ(0);
+	}
+	@-webkit-keyframes load8 {
+		0% {
+			-webkit-transform: rotate(0deg);
+			transform: rotate(0deg);
+		}
+
+		100% {
+			-webkit-transform: rotate(360deg);
+			transform: rotate(360deg);
+		}
+	}
+	@keyframes load8 {
+		0% {
+			-webkit-transform: rotate(0deg);
+			transform: rotate(0deg);
+		}
+
+		100% {
+			-webkit-transform: rotate(360deg);
+			transform: rotate(360deg);
+		}
+	}
+}
