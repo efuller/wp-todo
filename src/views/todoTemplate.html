@@ -1,0 +1,21 @@
+<ul id="wp-todo-list" class="wp-todo-list">
+	{{#todos}}
+	<li id="wp-todo-item-{{id}}" data-id="{{id}}" class="wp-todo-list-item">
+		<div class="wp-todo-complete-container">
+			<input type="checkbox" class="wp-todo-complete" name="wp-todo-complete" {{#completed}} checked {{/completed}}>
+		</div>
+		<div class="wp-todo-todo-drag-container">
+			<button class="wp-todo-task-drag">D</button>
+		</div>
+		<div class="wp-todo-task-input-container">
+			<input type="text" class="wp-todo-task-input" name="wp-todo-task-input" value="{{title}}">
+		</div>
+		<div class="wp-todo-task-delete-container">
+			<button class="wp-todo-task-delete">X</button>
+		</div>
+		<div class="wp-todo-task-details-container">
+			<button class="wp-todo-task-details">=></button>
+		</div>
+	</li>
+	{{/todos}}
+</ul>
