@@ -2,7 +2,7 @@ import delay from './delay';
 
 const data = {
 	primaryList: 1,
-	activeList: 3,
+	activeList: 1,
 	lists: [
 		{
 			id: 1,
@@ -28,7 +28,7 @@ const data = {
 				},
 				{
 					id: 3,
-					title: 'Here is todo number 2',
+					title: 'Here is todo number 3',
 					description: 'Here is the description for number 1',
 					deleted: false,
 					completed: true
@@ -259,6 +259,7 @@ class API {
 		return new Promise( ( resolve ) => {
 			API.getTodos( listId )
 				.then( ( todos ) => {
+					debugger;
 					const todoIndex = todos.findIndex( todo => {
 						return todo.id === todoId;
 					});
