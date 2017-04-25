@@ -1,3 +1,5 @@
+//import ToDoList from './components/ToDoList';
+
 import ToDoList from './components/ToDoList';
 
 class WPTodo {
@@ -6,7 +8,11 @@ class WPTodo {
 	}
 
 	init() {
-		this.todoList.render();
+		this.todoList.renderToDoList();
+	}
+
+	bindEvents() {
+
 	}
 }
 
