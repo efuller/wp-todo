@@ -14,20 +14,33 @@ class ToDoListView {
 	bindEvents() {
 		events.on( 'hide-loader', () => this.hideLoader() );
 		events.on( 'show-loader', () => this.showLoader() );
-		events.on( 'render-todos', ( todos ) => this.render( todos ) );
+
+		const $todos = $( '#wp-todo-list' );
+		$todos.on( 'click', '.wp-todo-task-delete', this.handleTodoDelete.bind( this ) );
 	}
 
 	renderToDoList() {
 		return API.getPrimaryList()
 			.then( ( list ) => {
 				events.emit( 'hide-loader' );
-				events.emit( 'render-todos', list.todos );
+				this.$listContainer.html( todoTemplate({ todos: list.todos }) );
 				this.bindEvents();
 			});
 	}
 
-	render( todos ) {
-		this.$listContainer.html( todoTemplate({ todos: todos }) );
+	handleTodoDelete( e ) {
+		const $target = $( e.target );
+		const $targetContainer = $target.closest( '.wp-todo-list-item' );
+		const id = $targetContainer.data( 'id' );
+		API.getActiveList()
+			.then( ( list ) => {
+				API.deleteTodo( list, id ).then( () => {
+					// $targetContainer.remove();
+					events.emit( 'delete-todo', id );
+				}).catch( ( err ) => {
+					console.warn( err );
+				});
+			});
 	}
 
 	hideLoader() {
