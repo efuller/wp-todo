@@ -1,23 +1,41 @@
-import API from '../api/API';
-import ToDoListView from './ToDoListView';
 import { events } from '../utilities/Events';
+import todoTemplate from '../views/todoTemplate.html';
+import $ from 'jQuery';
 
-class ToDoList {
+class ToDoListView {
 	constructor() {
-		new ToDoListView;
+		this.bindEvents();
+		this.$loader = $( '.wp-todo-loader-container' );
+		this.$listContainer = $( '#wp-todo-list-container' );
+		events.emit( 'show-loader' );
 	}
 
-	render() {
-		this.renderToDoList();
+	bindEvents() {
+		events.on( 'hide-loader', () => this.hideLoader() );
+		events.on( 'show-loader', () => this.showLoader() );
+		events.on( 'render-todos', ( todos ) => this.render( todos ) );
+		events.on( 'delete-todo', ( id ) => this.deleteTodo( id ) );
 	}
 
-	renderToDoList() {
-		return API.getPrimaryList()
-			.then( ( list ) => {
-				events.emit( 'hide-loader' );
-				events.emit( 'render-todos', list.todos );
-			});
+	render( todos ) {
+		this.$listContainer.html( this.renderTemplate( todos ) );
+	}
+
+	renderTemplate( todos ) {
+		return todoTemplate({todos: todos});
+	}
+
+	deleteTodo( id ) {
+		console.log( 'deleting todo' );
+	}
+
+	hideLoader() {
+		this.$loader.hide();
+	}
+
+	showLoader() {
+		this.$loader.show();
 	}
 }
 
-export default ToDoList;
+export default ToDoListView;
