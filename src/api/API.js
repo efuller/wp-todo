@@ -121,17 +121,15 @@ const data = {
  */
 class API {
 
-	static getPrimaryList() {
-		return new Promise( ( resolve ) => {
-			setTimeout( () => {
-				const primaryListId = data.primaryList;
+	static getConfig() {
+		return axios.get( `${API_URL}/config` );
+	}
 
-				API.getListById( primaryListId )
-					.then( ( list ) => {
-						resolve( list );
-					});
-			}, delay );
-		});
+	static getPrimaryList() {
+		return API.getConfig()
+			.then( ( result ) => {
+				return axios.get( `${API_URL}/todoLists/${result.data.primary}/todos` );
+			});
 	}
 
 	/**
