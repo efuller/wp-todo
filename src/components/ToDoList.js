@@ -20,27 +20,35 @@ class ToDoListView {
 	}
 
 	renderToDoList() {
-		return API.getPrimaryList()
-			.then( ( list ) => {
+		API.getPrimaryList()
+			.then( ({ data }) => {
+				console.log( data );
 				events.emit( 'hide-loader' );
-				this.$listContainer.html( todoTemplate({ todos: list.todos }) );
+				this.$listContainer.html( todoTemplate({ todos: data }) );
 				this.bindEvents();
-			});
+		});
 	}
 
 	handleTodoDelete( e ) {
 		const $target = $( e.target );
 		const $targetContainer = $target.closest( '.wp-todo-list-item' );
 		const id = $targetContainer.data( 'id' );
-		API.getActiveList()
-			.then( ( list ) => {
-				API.deleteTodo( list, id ).then( () => {
-					// $targetContainer.remove();
-					events.emit( 'delete-todo', id );
-				}).catch( ( err ) => {
-					console.warn( err );
-				});
+		const $todoListId = $targetContainer.data( 'todo-list-id' );
+
+		API.deleteTodo( $todoListId, id )
+			.then( ( result ) => {
+				console.log( result );
 			});
+
+		// API.getActiveList()
+		// 	.then( ( list ) => {
+		// 		API.deleteTodo( list, id ).then( () => {
+		// 			// $targetContainer.remove();
+		// 			events.emit( 'delete-todo', id );
+		// 		}).catch( ( err ) => {
+		// 			console.warn( err );
+		// 		});
+		// 	});
 	}
 
 	hideLoader() {
