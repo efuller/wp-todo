@@ -1,6 +1,6 @@
 <ul id="wp-todo-list" class="wp-todo-list">
 	{{#todos}}
-	<li id="wp-todo-item-{{id}}" data-id="{{id}}" class="wp-todo-list-item">
+	<li id="wp-todo-item-{{id}}" data-id="{{id}}" data-todo-list-id="{{todoListId}}" class="wp-todo-list-item">
 		<div class="wp-todo-complete-container">
 			<input type="checkbox" class="wp-todo-complete" name="wp-todo-complete" {{#completed}} checked {{/completed}}>
 		</div>
