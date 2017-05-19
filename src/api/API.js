@@ -1,4 +1,6 @@
 import delay from './delay';
+import axios from 'axios';
+import { API_URL } from '../utilities/helpers';
 
 const data = {
 	primaryList: 1,
