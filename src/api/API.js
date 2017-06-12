@@ -135,6 +135,16 @@ class API {
 	}
 
 	/**
+	 * Get a single todo.
+	 *
+	 * @param {Number} id      The ID of the todo to get.
+	 * @returns {AxiosPromise} The promise of the todo retrieved.
+	 */
+	static getTodo( id ) {
+		return axios.get( `${API_URL}/todos/${id}` );
+	}
+
+	/**
 	 * Get the current active list.
 	 * @returns {Promise}
 	 */
