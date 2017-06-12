@@ -260,28 +260,32 @@ class API {
 
 	/**
 	 * Mark a todo as deleted or perform a hard delete.
-	 * @param   {Number}  listId     The id of the list.
+	 *
 	 * @param   {Number}  todoId     The id of the todo to delete.
 	 * @param   {Boolean} hardDelete If true, the todo will be permanently deleted.
 	 * @returns {Promise} todos      The todos.
 	 */
-	static deleteTodo( listId, todoId, hardDelete = false ) {
-		return new Promise( ( resolve ) => {
-			API.getTodos( listId )
-				.then( ( todos ) => {
-					debugger;
-					const todoIndex = todos.findIndex( todo => {
-						return todo.id === todoId;
-					});
-					if ( true === hardDelete ) {
-						todos.splice( todoIndex, 1 );
-						resolve( todos );
-					}
-					todos[todoIndex].deleted = true;
-					resolve( todos.filter( todo => false === todo.deleted ) );
+	static deleteTodo( todoId, hardDelete = false ) {
+
+		if ( hardDelete ) {
+			return axios.delete( `${API_URL}/todos/${todoId}` )
+				.then( () => {
+					return todoId;
 				})
-				.catch( err => err );
-		});
+				.catch( error => error );
+		}
+
+		return API.getTodo( todoId )
+			.then( ( todo ) => {
+				const newTodo = todo.data;
+				newTodo.deleted = true;
+
+				return axios.put( `${API_URL}/todos/${todoId}`, newTodo )
+					.then( ( result ) => {
+						return result.data;
+					})
+					.catch( error => error );
+			});
 	}
 
 	/**
