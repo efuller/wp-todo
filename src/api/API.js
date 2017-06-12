@@ -290,22 +290,23 @@ class API {
 
 	/**
 	 * Complete a todo.
-	 * @param   {Number}  listId The id of the list.
+	 *
 	 * @param   {Number}  todoId The id of the todo.
 	 * @returns {Promise} todos  The list of todos.
 	 */
-	static completeTodo( listId, todoId ) {
-		return new Promise( ( resolve ) => {
-			API.getTodos( listId )
-				.then( ( todos ) => {
-					const todoIndex = todos.findIndex( todo => {
-						return todo.id === todoId;
-					});
-					todos[todoIndex].completed = ! todos[todoIndex].completed;
-					resolve( todos[todoIndex]);
-				})
-				.catch( err => err );
-		});
+	static completeTodo( todoId ) {
+
+		return API.getTodo( todoId )
+			.then( ( todo ) => {
+				const newTodo = todo.data;
+				newTodo.completed = ! newTodo.completed;
+
+				return axios.put( `${API_URL}/todos/${todoId}`, newTodo )
+					.then( ( result ) => {
+						return result.data;
+					})
+					.catch( error => error );
+			});
 	}
 }
 
