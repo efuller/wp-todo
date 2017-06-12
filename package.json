@@ -15,7 +15,7 @@
     "test": "dockunit",
     "preversion": "npm test",
     "version": "grunt version && git add .",
-    "jsonserver": "json-server --watch src/api/todos.json --port 8080"
+    "jsonserver": "json-server src/api/seed.js --port 8080"
   },
   "license": "GPLv2",
   "devDependencies": {
