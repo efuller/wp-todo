@@ -17,6 +17,7 @@ class ToDoListView {
 
 		const $todos = $( '#wp-todo-list' );
 		$todos.on( 'click', '.wp-todo-task-delete', this.handleTodoDelete.bind( this ) );
+		$todos.on( 'click', '.wp-todo-complete', this.handleTodoComplete.bind( this ) );
 	}
 
 	renderToDoList() {
@@ -29,26 +30,30 @@ class ToDoListView {
 		});
 	}
 
+	handleTodoComplete( e ) {
+		const $target = $( e.target );
+		const $targetContainer = $target.closest( '.wp-todo-list-item' );
+		const $id = $targetContainer.data( 'id' );
+
+		API.completeTodo( $id )
+			.then( ( todo ) => {
+				events.emit( 'complete-todo', todo );
+			});
+	}
+
 	handleTodoDelete( e ) {
 		const $target = $( e.target );
 		const $targetContainer = $target.closest( '.wp-todo-list-item' );
-		const id = $targetContainer.data( 'id' );
-		const $todoListId = $targetContainer.data( 'todo-list-id' );
+		const $id = $targetContainer.data( 'id' );
 
-		API.deleteTodo( $todoListId, id )
-			.then( ( result ) => {
-				console.log( result );
+		API.deleteTodo( $id )
+			.then( ( id ) => {
+				$targetContainer.remove();
+				events.emit( 'delete-todo', id );
+			})
+			.catch( ( error ) => {
+				console.warn( 'ToDoList Error: ', error );
 			});
-
-		// API.getActiveList()
-		// 	.then( ( list ) => {
-		// 		API.deleteTodo( list, id ).then( () => {
-		// 			// $targetContainer.remove();
-		// 			events.emit( 'delete-todo', id );
-		// 		}).catch( ( err ) => {
-		// 			console.warn( err );
-		// 		});
-		// 	});
 	}
 
 	hideLoader() {
