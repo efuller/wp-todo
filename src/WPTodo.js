@@ -20,6 +20,10 @@ class WPTodo {
 		events.on( 'render-todos', ( todos ) => {
 			console.log( 'ACTION: rendered todos ' + todos );
 		});
+		events.on( 'complete-todo', ( todo ) => {
+			console.log( 'ACTION: todo completed:', todo );
+			this.todoList.renderToDoList();
+		});
 	}
 }
 
