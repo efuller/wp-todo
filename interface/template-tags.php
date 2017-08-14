@@ -26,9 +26,8 @@ function wpt_container() {
 			</header>
 			<nav id="wp-todo-navbar" class="wp-todo-navbar">
 				<ul class="wp-todo-menu">
-					<li class="wp-todo-menu-item"><a href="#">New</a></li>
-					<li class="wp-todo-menu-item"><a href="#">Lists</a></li>
-					<li class="wp-todo-menu-item"><a href="#">Configure</a></li>
+					<li class="wp-todo-menu-item"><button id="Lists">Lists</button></li>
+					<li class="wp-todo-menu-item"><button id="configure-link">Configure</button></li>
 				</ul>
 			</nav>
 			<div id="wp-todo-content-container" class="wp-todo-content">
@@ -36,9 +35,8 @@ function wpt_container() {
 					<div class="wp-todo-loader"></div>
 				</div>
 				<div id="wp-todo-list-container"></div>
-				<div id="new-list" class="panel-hidden"><h3>add a new list</h3></div>
-				<div id="lists" class="panel-hidden"><h3>Choose another list.</h3></div>
-				<div id="configure" class="panel-hidden"><h3>Configuration options</h3></div>
+				<div id="new-list" class="panel panel-hidden"><h3>add a new list</h3></div>
+				<div id="lists" class="panel panel-hidden"><h3>Choose another list.</h3></div>
 			</div>
 			<footer id="wp-todo-footer" class="wp-todo-footer"></footer>
 		</section>
