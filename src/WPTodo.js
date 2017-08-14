@@ -1,6 +1,5 @@
 import { events } from './utilities/Events';
 import ToDos from './components/ToDos';
-import { appState } from './utilities/State';
 
 class WPTodo {
 	constructor() {
