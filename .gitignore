@@ -69,4 +69,6 @@ node_modules
 
 release
 
+# Custom Things
 tests/
+notes.md
