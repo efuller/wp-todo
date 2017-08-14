@@ -37,14 +37,14 @@
   width: 450px;
   z-index: 100; }
 
-#wp-todo .panel-hidden {
+#wp-todo .panel {
   background: #fff;
   height: 100%;
   left: 0;
   position: absolute;
   top: 0;
-  -webkit-transform: translateX(100%);
-          transform: translateX(100%);
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
   -webkit-transition: -webkit-transform 0.3s ease-out;
   transition: -webkit-transform 0.3s ease-out;
   transition: transform 0.3s ease-out;
@@ -52,9 +52,9 @@
   width: 100%;
   z-index: 2; }
 
-#wp-todo .panel-show {
-  -webkit-transform: translateX(0);
-          transform: translateX(0); }
+#wp-todo .panel-hidden {
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%); }
 
 #wp-todo .wp-todo-content {
   min-height: 310px;
