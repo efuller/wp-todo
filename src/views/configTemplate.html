@@ -1,1 +1,12 @@
-<div id="configure" class="panel panel-hidden"><h3>Configuration options</h3></div>
+<div id="configure" class="panel panel-hidden">
+	<ul id="config-options">
+		<li>
+			<label for="show-completed">Show Completed</label>
+			<input type="checkbox" id="show-completed" {{#config.showCompleted}} checked {{/config.showCompleted}}>
+		</li>
+		<li>
+			<label for="show-deleted">Show Deleted</label>
+			<input type="checkbox" id="show-deleted" {{#config.showDeleted}} checked {{/config.showDeleted}}>
+		</li>
+	</ul>
+</div>
