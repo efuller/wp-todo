@@ -61,12 +61,12 @@ class Todos {
 		appState.setState({todos: newTodos});
 	}
 
-	updateDeletedTodoState( id ) {
+	updateDeletedTodoState( deletedTodo ) {
 		const state = appState.getState();
 		const { todos } = state;
 
 		const newTodos = todos.map( todo => {
-			if ( todo.id === id ) {
+			if ( todo.id === deletedTodo.id ) {
 				todo.deleted = ! todo.deleted;
 			}
 
@@ -94,9 +94,9 @@ class Todos {
 		const $id = $targetContainer.data( 'id' );
 
 		API.deleteTodo( $id )
-			.then( ( id ) => {
-				this.updateDeletedTodoState( id );
-				events.emit( 'delete-todo', id );
+			.then( ( todo ) => {
+				this.updateDeletedTodoState( todo );
+				events.emit( 'delete-todo', todo );
 			});
 	}
 
