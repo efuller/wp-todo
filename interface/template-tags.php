@@ -40,7 +40,7 @@ function wpt_container() {
 				<div id="lists" class="panel-hidden"><h3>Choose another list.</h3></div>
 				<div id="configure" class="panel-hidden"><h3>Configuration options</h3></div>
 			</div>
-			<footer id="wp-todo-footer" class="wp-todo-footer"><h5>Footer</h5></footer>
+			<footer id="wp-todo-footer" class="wp-todo-footer"></footer>
 		</section>
 	</div>
 	<?php
