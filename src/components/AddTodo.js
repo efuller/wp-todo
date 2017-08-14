@@ -37,7 +37,8 @@ class AddTodo {
 		const $form = $( '#add-todo-form' );
 		$form.submit( ( e ) => {
 			e.preventDefault();
-			const todo = $form.find( '#add-todo' ).val().trim();
+			const $input = $form.find( '#add-todo' );
+			const todo = $input.val().trim();
 			const state = appState.getState();
 			const list = state.activeList || state.primaryList;
 
@@ -54,6 +55,7 @@ class AddTodo {
 				.then( ( response ) => {
 					this.updateAddTodoState( response.data );
 					events.emit( 'add-todo', todo );
+					$input.val( '' );
 				});
 		});
 	}
