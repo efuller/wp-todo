@@ -22,6 +22,14 @@ class API {
 		return axios.get( `${API_URL}/todoLists/${state.primaryList}/todos` );
 	}
 
+	static addTodo( list, todo ) {
+		if ( appState.getState().activeList ) {
+			return axios.post( `${API_URL}/todoLists/${state.activeList}/todos`, todo );
+		}
+
+		return axios.post( `${API_URL}/todoLists/${state.primaryList}/todos`, todo );
+	}
+
 	/**
 	 * Mark a todo as deleted or perform a hard delete.
 	 *
