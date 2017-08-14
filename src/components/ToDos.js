@@ -4,7 +4,7 @@ import { appState } from '../utilities/State';
 import todoTemplate from '../views/todoTemplate.html';
 import $ from 'jQuery';
 
-class ToDoListView {
+class Todos {
 	constructor() {
 		this.bindEvents();
 		this.$loader = $( '.wp-todo-loader-container' );
@@ -46,6 +46,21 @@ class ToDoListView {
 		this.bindEvents();
 	}
 
+	updateCompletedTodoState( completedTodo ) {
+		const state = appState.getState();
+		const { todos } = state;
+
+		const newTodos = todos.map( todo => {
+			if ( todo.id === completedTodo.id ) {
+				todo.completed = ! todo.completed;
+			}
+
+			return todo;
+		});
+
+		appState.setState({todos: newTodos});
+	}
+
 	handleTodoComplete( e ) {
 		const $target = $( e.target );
 		const $targetContainer = $target.closest( '.wp-todo-list-item' );
@@ -53,6 +68,7 @@ class ToDoListView {
 
 		API.completeTodo( $id )
 			.then( ( todo ) => {
+				this.updateCompletedTodoState( todo );
 				events.emit( 'complete-todo', todo );
 			});
 	}
@@ -81,4 +97,4 @@ class ToDoListView {
 	}
 }
 
-export default ToDoListView;
+export default Todos;

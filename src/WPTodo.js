@@ -1,28 +1,29 @@
-//import ToDoList from './components/ToDoList';
 import { events } from './utilities/Events';
-import ToDoList from './components/ToDoList';
+import ToDos from './components/ToDos';
+import { appState } from './utilities/State';
 
 class WPTodo {
 	constructor() {
-		this.todoList = new ToDoList();
+		this.todos = new ToDos();
 	}
 
 	init() {
-		this.todoList.renderToDoList();
+		this.todos.renderToDoList();
 		this.bindEvents();
 	}
 
 	bindEvents() {
 		events.on( 'delete-todo', ( id ) => {
 			console.log( 'ACTION: todo deleted' + id );
-			this.todoList.renderToDoList();
+			this.todos.renderToDoList();
 		});
 		events.on( 'render-todos', ( todos ) => {
 			console.log( 'ACTION: rendered todos ' + todos );
 		});
-		events.on( 'complete-todo', ( todo ) => {
-			console.log( 'ACTION: todo completed:', todo );
-			this.todoList.renderToDoList();
+		events.on( 'complete-todo', ( completedTodo ) => {
+			console.log( 'ACTION: todo completed:', completedTodo );
+
+			this.todos.renderToDoList();
 		});
 	}
 }
