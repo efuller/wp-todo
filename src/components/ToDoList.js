@@ -1,5 +1,6 @@
 import API from '../api/API';
 import { events } from '../utilities/Events';
+import { appState } from '../utilities/State';
 import todoTemplate from '../views/todoTemplate.html';
 import $ from 'jQuery';
 
@@ -21,13 +22,28 @@ class ToDoListView {
 	}
 
 	renderToDoList() {
-		API.getPrimaryList()
-			.then( ({ data }) => {
-				console.log( data );
-				events.emit( 'hide-loader' );
-				this.$listContainer.html( todoTemplate({ todos: data }) );
-				this.bindEvents();
-		});
+		const state = appState.getState();
+		events.emit( 'hide-loader' );
+		let todos = [];
+
+		if ( state.showCompleted && state.showDeleted ) {
+			todos = state.todos;
+		}
+
+		if ( state.showCompleted && ! state.showDeleted ) {
+			todos = state.todos.filter( ( todo ) => {
+				return true !== todo.deleted;
+			});
+		}
+
+		if ( state.showDeleted && ! state.showCompleted ) {
+			todos = state.todos.filter( ( todo ) => {
+				return true !== todo.completed;
+			});
+		}
+
+		this.$listContainer.html( todoTemplate({ todos: todos }) );
+		this.bindEvents();
 	}
 
 	handleTodoComplete( e ) {
