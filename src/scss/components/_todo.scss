@@ -1,0 +1,16 @@
+//--------------------------------------------------------------
+// Todos
+//--------------------------------------------------------------
+.wp-todo-list-item {
+	border-bottom: 1px solid $color-gray;
+	display: flex;
+	padding: 10px 5px;
+
+	&.completed {
+		background: rgba($color-completed, 0.5);
+	}
+
+	&.deleted {
+		background: rgba($color-deleted, 0.5);
+	}
+}
