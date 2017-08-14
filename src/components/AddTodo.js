@@ -38,12 +38,13 @@ class AddTodo {
 		$form.submit( ( e ) => {
 			e.preventDefault();
 			const todo = $form.find( '#add-todo' ).val().trim();
-			const list = appState.getState().activeList || appState.getState().primaryList;
+			const state = appState.getState();
+			const list = state.activeList || state.primaryList;
 
 			const newTodo = {
 				'id': uuid(),
 				'title': todo,
-				'description': 'Just something default',
+				'description': '',
 				'todoListId': list,
 				'completed': false,
 				'deleted': false
