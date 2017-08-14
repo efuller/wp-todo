@@ -61,6 +61,21 @@ class Todos {
 		appState.setState({todos: newTodos});
 	}
 
+	updateDeletedTodoState( id ) {
+		const state = appState.getState();
+		const { todos } = state;
+
+		const newTodos = todos.map( todo => {
+			if ( todo.id === id ) {
+				todo.deleted = ! todo.deleted;
+			}
+
+			return todo;
+		});
+
+		appState.setState({todos: newTodos});
+	}
+
 	handleTodoComplete( e ) {
 		const $target = $( e.target );
 		const $targetContainer = $target.closest( '.wp-todo-list-item' );
@@ -80,11 +95,8 @@ class Todos {
 
 		API.deleteTodo( $id )
 			.then( ( id ) => {
-				$targetContainer.remove();
+				this.updateDeletedTodoState( id );
 				events.emit( 'delete-todo', id );
-			})
-			.catch( ( error ) => {
-				console.warn( 'ToDoList Error: ', error );
 			});
 	}
 
