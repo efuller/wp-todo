@@ -3,7 +3,7 @@ const uuid = require( 'uuid/v4' );
 module.exports = () => {
 	return {
 		config: {
-			'primary': 1,
+			'primaryList': 1,
 			'showCompleted': false,
 			'showDeleted': false
 		},
@@ -40,7 +40,7 @@ module.exports = () => {
 				'description': 'Here is the description for number 2',
 				'todoListId': 1,
 				'completed': false,
-				'deleted': false
+				'deleted': true
 			},
 			{
 				'id': uuid(),
