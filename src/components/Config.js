@@ -1,4 +1,5 @@
 import configTemplate from '../views/configTemplate.html';
+import { appState } from '../utilities/State';
 import $ from 'jQuery';
 
 class Config {
@@ -9,7 +10,12 @@ class Config {
 	}
 
 	render() {
-		this.listContainer.append( configTemplate() );
+		const state = appState.getState();
+		const config = {
+			showCompleted: state.showCompleted,
+			showDeleted: state.showDeleted
+		};
+		this.listContainer.append( configTemplate({ config: config }) );
 	}
 
 	cache() {
