@@ -14,8 +14,8 @@ class Config {
 	render() {
 		const state = appState.getState();
 		const config = {
-			hideCompleted: state.hideCompleted,
-			hideDeleted: state.hideDeleted
+			hideCompleted: state.config.hideCompleted,
+			hideDeleted: state.config.hideDeleted
 		};
 		this.listContainer.append( configTemplate({ config: config }) );
 	}
