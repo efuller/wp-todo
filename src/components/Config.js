@@ -34,6 +34,17 @@ class Config {
 		this.configLink.on( 'click', () => {
 			configPanel.toggleClass( 'panel-hidden' );
 		});
+
+		this.toggleCompleted.on( 'change', this.handleToggleCompleted.bind( this ) );
+	}
+	handleToggleCompleted() {
+
+		API.toggleHideCompleted()
+			.then( ( result ) => {
+				console.log( result );
+				this.updateHideCompletedState( result );
+				this.render();
+			});
 	}
 }
 
