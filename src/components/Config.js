@@ -1,5 +1,6 @@
 import configTemplate from '../views/configTemplate.html';
 import API from '../api/API';
+import { events } from '../utilities/Events';
 import { appState } from '../utilities/State';
 import $ from 'jQuery';
 
@@ -52,6 +53,7 @@ class Config {
 				console.log( result );
 				this.updateHideCompletedState( result );
 				this.render();
+				events.emit( 'render-todos' );
 			});
 	}
 }

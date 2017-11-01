@@ -15,6 +15,7 @@ class Todos {
 	bindEvents() {
 		events.on( 'hide-loader', () => this.hideLoader() );
 		events.on( 'show-loader', () => this.showLoader() );
+		events.on( 'render-todos', () => this.renderToDoList() );
 
 		const $todos = $( '#wp-todo-list' );
 		$todos.on( 'click', '.wp-todo-task-delete', this.handleTodoDelete.bind( this ) );
