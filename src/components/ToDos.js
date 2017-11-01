@@ -26,13 +26,13 @@ class Todos {
 		events.emit( 'hide-loader' );
 		let todos = state.todos;
 
-		if ( state.hideDeleted ) {
+		if ( state.config.hideDeleted ) {
 			todos = todos.filter( ( todo ) => {
 				return true !== todo.deleted;
 			});
 		}
 
-		if ( state.hideCompleted ) {
+		if ( state.config.hideCompleted ) {
 			todos = todos.filter( ( todo ) => {
 				return true !== todo.completed;
 			});
