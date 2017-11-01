@@ -28,6 +28,7 @@ class Config {
 
 	cacheAfterRender() {
 		this.toggleCompleted = $( '#hide-completed' );
+		this.toggleDeleted = $( '#hide-deleted' );
 	}
 
 	bindEvents() {
@@ -36,22 +37,32 @@ class Config {
 			configPanel.toggleClass( 'panel-hidden' );
 		});
 
-		this.toggleCompleted.on( 'change', this.handleToggleCompleted.bind( this ) );
+		this.toggleCompleted.on( 'change', this.handleHideCompleted.bind( this ) );
+		this.toggleDeleted.on( 'change', this.handleHideDeleted.bind( this ) );
 	}
 
-	updateHideCompletedState( result ) {
+	updateState( result ) {
 		const config = appState.getState().config;
 		const newState = Object.assign({}, config, result );
 
 		appState.setState({ config: newState });
 	}
 
-	handleToggleCompleted() {
+	handleHideCompleted() {
 
 		API.toggleHideCompleted()
 			.then( ( result ) => {
-				console.log( result );
-				this.updateHideCompletedState( result );
+				this.updateState( result );
+				this.render();
+				events.emit( 'render-todos' );
+			});
+	}
+
+	handleHideDeleted() {
+
+		API.toggleHideDeleted()
+			.then( ( result ) => {
+				this.updateState( result );
 				this.render();
 				events.emit( 'render-todos' );
 			});

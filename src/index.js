@@ -18,11 +18,6 @@ $( function() {
 		.then( ( config ) => {
 			appState.setState({ config: config.data });
 
-			// Let's just play with some settings here.
-			// const newState = Object.assign({}, appState.getState().config, { hideCompleted: false, hideDeleted: true });
-			//
-			// appState.setState({ config: newState });
-
 			API.getTodos()
 				.then( ({ data }) => {
 					appState.setState({ todos: data });
