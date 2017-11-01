@@ -90,6 +90,18 @@ class API {
 	static getTodo( id ) {
 		return axios.get( `${API_URL}/todos/${id}` );
 	}
+
+	static toggleHideCompleted() {
+		const { config } = appState.getState();
+
+		const newState = Object.assign({}, config, { hideCompleted: ! config.hideCompleted });
+
+		return axios.put( `${API_URL}/config`, newState )
+			.then( ( result ) => {
+				return result.data;
+			})
+			.catch( error => error );
+	}
 }
 
 export default API;
