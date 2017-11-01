@@ -1,4 +1,5 @@
 import configTemplate from '../views/configTemplate.html';
+import API from '../api/API';
 import { appState } from '../utilities/State';
 import $ from 'jQuery';
 
