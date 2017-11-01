@@ -37,6 +37,14 @@ class Config {
 
 		this.toggleCompleted.on( 'change', this.handleToggleCompleted.bind( this ) );
 	}
+
+	updateHideCompletedState( result ) {
+		const config = appState.getState().config;
+		const newState = Object.assign({}, config, result );
+
+		appState.setState({ config: newState });
+	}
+
 	handleToggleCompleted() {
 
 		API.toggleHideCompleted()
