@@ -5,7 +5,8 @@ module.exports = () => {
 		config: {
 			'primaryList': 1,
 			'hideCompleted': false,
-			'hideDeleted': false
+			'hideDeleted': false,
+			'activeList': null
 		},
 		'todoLists': [
 			{
