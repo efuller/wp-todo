@@ -12,8 +12,8 @@ class Config {
 	render() {
 		const state = appState.getState();
 		const config = {
-			showCompleted: state.showCompleted,
-			showDeleted: state.showDeleted
+			hideCompleted: state.hideCompleted,
+			hideDeleted: state.hideDeleted
 		};
 		this.listContainer.append( configTemplate({ config: config }) );
 	}

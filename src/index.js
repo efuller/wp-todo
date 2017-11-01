@@ -17,7 +17,8 @@ $( function() {
 	API.getConfig()
 		.then( ( config ) => {
 			appState.setState( config.data );
-			appState.setState({ hideCompleted: true, hideDeleted: true });
+			appState.setState({ hideCompleted: false, hideDeleted: false });
+
 
 			API.getTodos()
 				.then( ({ data }) => {
