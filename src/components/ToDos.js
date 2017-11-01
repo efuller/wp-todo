@@ -24,20 +24,16 @@ class Todos {
 	renderToDoList() {
 		const state = appState.getState();
 		events.emit( 'hide-loader' );
-		let todos = [];
+		let todos = state.todos;
 
-		if ( state.showCompleted && state.showDeleted ) {
-			todos = state.todos;
-		}
-
-		if ( state.showCompleted && ! state.showDeleted ) {
-			todos = state.todos.filter( ( todo ) => {
+		if ( state.hideDeleted ) {
+			todos = todos.filter( ( todo ) => {
 				return true !== todo.deleted;
 			});
 		}
 
-		if ( state.showDeleted && ! state.showCompleted ) {
-			todos = state.todos.filter( ( todo ) => {
+		if ( state.hideCompleted ) {
+			todos = todos.filter( ( todo ) => {
 				return true !== todo.completed;
 			});
 		}
