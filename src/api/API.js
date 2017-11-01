@@ -15,19 +15,19 @@ class API {
 	}
 
 	static getTodos() {
-		if ( appState.getState().activeList ) {
-			return axios.get( `${API_URL}/todoLists/${state.activeList}/todos` );
+		if ( appState.getState().config.activeList ) {
+			return axios.get( `${API_URL}/todoLists/${state.config.activeList}/todos` );
 		}
 
-		return axios.get( `${API_URL}/todoLists/${state.primaryList}/todos` );
+		return axios.get( `${API_URL}/todoLists/${state.config.primaryList}/todos` );
 	}
 
 	static addTodo( list, todo ) {
 		if ( appState.getState().activeList ) {
-			return axios.post( `${API_URL}/todoLists/${state.activeList}/todos`, todo );
+			return axios.post( `${API_URL}/todoLists/${state.config.activeList}/todos`, todo );
 		}
 
-		return axios.post( `${API_URL}/todoLists/${state.primaryList}/todos`, todo );
+		return axios.post( `${API_URL}/todoLists/${state.config.primaryList}/todos`, todo );
 	}
 
 	/**
