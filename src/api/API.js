@@ -102,6 +102,18 @@ class API {
 			})
 			.catch( error => error );
 	}
+
+	static toggleHideDeleted() {
+		const { config } = appState.getState();
+
+		const newState = Object.assign({}, config, { hideDeleted: ! config.hideDeleted });
+
+		return axios.put( `${API_URL}/config`, newState )
+			.then( ( result ) => {
+				return result.data;
+			})
+			.catch( error => error );
+	}
 }
 
 export default API;
