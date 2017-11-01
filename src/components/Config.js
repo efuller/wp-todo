@@ -7,6 +7,7 @@ class Config {
 	constructor() {
 		this.cache();
 		this.render();
+		this.cacheAfterRender();
 		this.bindEvents();
 	}
 
@@ -22,6 +23,10 @@ class Config {
 	cache() {
 		this.listContainer = $( '#wp-todo-content-container' );
 		this.configLink = $( '#configure-link' );
+	}
+
+	cacheAfterRender() {
+		this.toggleCompleted = $( '#hide-completed' );
 	}
 
 	bindEvents() {
