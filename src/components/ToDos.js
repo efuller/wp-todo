@@ -17,9 +17,13 @@ class Todos {
 		events.on( 'show-loader', () => this.showLoader() );
 		events.on( 'render-todos', () => this.renderToDoList() );
 
-		const $todos = $( '#wp-todo-list' );
-		$todos.on( 'click', '.wp-todo-task-delete', this.handleTodoDelete.bind( this ) );
-		$todos.on( 'click', '.wp-todo-complete', this.handleTodoComplete.bind( this ) );
+		const todos = document.getElementById( 'wp-todo-list-container' );
+
+		todos.addEventListener( 'click', this.handleTodoDelete.bind( this ) );
+
+		// const $todos = $( '#wp-todo-list-container' );
+		// $todos.on( 'click', '.wp-todo-task-delete', this.handleTodoDelete.bind( this ) );
+		// $todos.on( 'click', '.wp-todo-complete', this.handleTodoComplete.bind( this ) );
 	}
 
 	renderToDoList() {
@@ -40,7 +44,7 @@ class Todos {
 		}
 
 		this.$listContainer.html( todoTemplate({ todos: todos }) );
-		this.bindEvents();
+		// this.bindEvents();
 	}
 
 	updateCompletedTodoState( completedTodo ) {
@@ -85,16 +89,31 @@ class Todos {
 			});
 	}
 
-	handleTodoDelete( e ) {
-		const $target = $( e.target );
-		const $targetContainer = $target.closest( '.wp-todo-list-item' );
-		const $id = $targetContainer.data( 'id' );
+	closest( element, selector ) {
+		if ( null === element.parentNode ) {
+			return null;
+		}
 
-		API.deleteTodo( $id )
-			.then( ( todo ) => {
-				this.updateDeletedTodoState( todo );
-				events.emit( 'delete-todo', todo );
-			});
+		if ( element.parentNode.classList.contains( selector ) ) {
+			return element.parentNode;
+		}
+
+		return this.closest( element.parentNode, selector );
+	};
+
+	handleTodoDelete( e ) {
+		const target = e.target;
+
+		if ( 'wp-todo-task-delete' === target.className ) {
+			const parentListItem = this.closest( target, 'wp-todo-list-item' );
+			const id = parentListItem.getAttribute( 'data-id' );
+
+			API.deleteTodo( id )
+				.then( ( todo ) => {
+					this.updateDeletedTodoState( todo );
+					events.emit( 'delete-todo', todo );
+				});
+		}
 	}
 
 	hideLoader() {
