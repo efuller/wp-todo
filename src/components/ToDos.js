@@ -3,13 +3,12 @@ import { events } from '../utilities/Events';
 import { appState } from '../utilities/State';
 import DOM from '../utilities/DOM';
 import todoTemplate from '../views/todoTemplate.html';
-import $ from 'jQuery';
 
 class Todos {
 	constructor() {
 		this.bindEvents();
-		this.$loader = $( '.wp-todo-loader-container' );
-		this.$listContainer = $( '#wp-todo-list-container' );
+		this.loader = document.querySelector( '.wp-todo-loader-container' );
+		this.listContainer = document.getElementById( 'wp-todo-list-container' );
 		events.emit( 'show-loader' );
 	}
 
@@ -22,10 +21,6 @@ class Todos {
 
 		todos.addEventListener( 'click', this.handleTodoDelete.bind( this ) );
 		todos.addEventListener( 'click', this.handleTodoComplete.bind( this ) );
-
-		// const $todos = $( '#wp-todo-list-container' );
-		// $todos.on( 'click', '.wp-todo-task-delete', this.handleTodoDelete.bind( this ) );
-		// $todos.on( 'click', '.wp-todo-complete', this.handleTodoComplete.bind( this ) );
 	}
 
 	renderToDoList() {
@@ -45,8 +40,7 @@ class Todos {
 			});
 		}
 
-		this.$listContainer.html( todoTemplate({ todos: todos }) );
-		// this.bindEvents();
+		this.listContainer.innerHTML = todoTemplate({ todos: todos });
 	}
 
 	updateCompletedTodoState( completedTodo ) {
@@ -109,11 +103,11 @@ class Todos {
 	}
 
 	hideLoader() {
-		this.$loader.hide();
+		this.loader.style.display = 'none';
 	}
 
 	showLoader() {
-		this.$loader.show();
+		this.loader.style.display = 'block';
 	}
 }
 
