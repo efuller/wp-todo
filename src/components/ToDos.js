@@ -1,6 +1,7 @@
 import API from '../api/API';
 import { events } from '../utilities/Events';
 import { appState } from '../utilities/State';
+import DOM from '../utilities/DOM';
 import todoTemplate from '../views/todoTemplate.html';
 import $ from 'jQuery';
 
@@ -20,6 +21,7 @@ class Todos {
 		const todos = document.getElementById( 'wp-todo-list-container' );
 
 		todos.addEventListener( 'click', this.handleTodoDelete.bind( this ) );
+		todos.addEventListener( 'click', this.handleTodoComplete.bind( this ) );
 
 		// const $todos = $( '#wp-todo-list-container' );
 		// $todos.on( 'click', '.wp-todo-task-delete', this.handleTodoDelete.bind( this ) );
@@ -78,35 +80,25 @@ class Todos {
 	}
 
 	handleTodoComplete( e ) {
-		const $target = $( e.target );
-		const $targetContainer = $target.closest( '.wp-todo-list-item' );
-		const $id = $targetContainer.data( 'id' );
+		const target = e.target;
+		const parentListItem = DOM.closest( target, 'wp-todo-list-item' );
+		const id = parentListItem.getAttribute( 'data-id' );
 
-		API.completeTodo( $id )
-			.then( ( todo ) => {
-				this.updateCompletedTodoState( todo );
-				events.emit( 'complete-todo', todo );
-			});
+		if ( 'wp-todo-complete' === target.className ) {
+			API.completeTodo( id )
+				.then( ( todo ) => {
+					this.updateCompletedTodoState( todo );
+					events.emit( 'complete-todo', todo );
+				});
+		}
 	}
-
-	closest( element, selector ) {
-		if ( null === element.parentNode ) {
-			return null;
-		}
-
-		if ( element.parentNode.classList.contains( selector ) ) {
-			return element.parentNode;
-		}
-
-		return this.closest( element.parentNode, selector );
-	};
 
 	handleTodoDelete( e ) {
 		const target = e.target;
+		const parentListItem = DOM.closest( target, 'wp-todo-list-item' );
+		const id = parentListItem.getAttribute( 'data-id' );
 
 		if ( 'wp-todo-task-delete' === target.className ) {
-			const parentListItem = this.closest( target, 'wp-todo-list-item' );
-			const id = parentListItem.getAttribute( 'data-id' );
 
 			API.deleteTodo( id )
 				.then( ( todo ) => {
