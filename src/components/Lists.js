@@ -14,9 +14,7 @@ class Lists {
 	}
 
 	cache() {
-		// this.listContainer = $( '#wp-todo-content-container' );
 		this.listContainer = document.getElementById( 'wp-todo-content-container' );
-		// this.listsLink = $( '#configure-lists' );
 		this.listsLink = document.getElementById( 'configure-lists' );
 	}
 
