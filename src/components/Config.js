@@ -1,4 +1,5 @@
 import configTemplate from '../views/configTemplate.html';
+import listSelect from '../views/listSelect.html';
 import API from '../api/API';
 import { events } from '../utilities/Events';
 import { appState } from '../utilities/State';
@@ -15,10 +16,12 @@ class Config {
 		const state = appState.getState();
 		const config = {
 			hideCompleted: state.config.hideCompleted,
-			hideDeleted: state.config.hideDeleted
+			hideDeleted: state.config.hideDeleted,
 		};
+		const todoLists = state.todoLists;
+
 		const container = document.createElement( 'div' );
-		container.innerHTML = configTemplate({ config });
+		container.innerHTML = configTemplate.render({ config, todoLists }, { listSelect: listSelect });
 		this.listContainer.appendChild( container );
 	}
 
