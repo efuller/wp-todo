@@ -1,5 +1,4 @@
 import listsTemplate from '../views/listsTemplate.html';
-import $ from 'jQuery';
 
 class Lists {
 	constructor() {
@@ -9,22 +8,26 @@ class Lists {
 	}
 
 	render() {
-		this.listContainer.append( listsTemplate() );
+		const listContainer = document.createElement( 'div' );
+		listContainer.innerHTML = listsTemplate();
+		this.listContainer.appendChild( listContainer );
 	}
 
 	cache() {
-		this.listContainer = $( '#wp-todo-content-container' );
-		this.listsLink = $( '#configure-lists' );
+		// this.listContainer = $( '#wp-todo-content-container' );
+		this.listContainer = document.getElementById( 'wp-todo-content-container' );
+		// this.listsLink = $( '#configure-lists' );
+		this.listsLink = document.getElementById( 'configure-lists' );
 	}
 
 	cacheAfterRender() {
-		this.toggleCompleted = $( '#hide-completed' );
-		this.toggleDeleted = $( '#hide-deleted' );
+		this.toggleCompleted = document.getElementById( 'hide-completed' );
+		this.toggleDeleted = document.getElementById( 'hide-deleted' );
 	}
 
 	bindEvents() {
-		const listsPanel = this.listContainer.find( '#lists' );
-		this.listsLink.on( 'click', () => {
+		const listsPanel = this.listContainer.querySelector( '#lists' );
+		this.listsLink.addEventListener( 'click', () => {
 			listsPanel.toggleClass( 'panel-hidden' );
 		});
 	}
