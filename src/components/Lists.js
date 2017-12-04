@@ -9,7 +9,7 @@ class Lists {
 
 	render() {
 		const listContainer = document.createElement( 'div' );
-		listContainer.innerHTML = listsTemplate();
+		listContainer.innerHTML = listsTemplate.render();
 		this.listContainer.appendChild( listContainer );
 	}
 

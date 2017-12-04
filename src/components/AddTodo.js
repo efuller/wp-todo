@@ -12,7 +12,7 @@ class AddTodo {
 	}
 
 	render() {
-		this.footer.innerHTML = addToDoTemplate();
+		this.footer.innerHTML = addToDoTemplate.render();
 	}
 
 	cache() {

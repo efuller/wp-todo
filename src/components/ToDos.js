@@ -40,7 +40,7 @@ class Todos {
 			});
 		}
 
-		this.listContainer.innerHTML = todoTemplate({ todos: todos });
+		this.listContainer.innerHTML = todoTemplate.render({ todos: todos });
 	}
 
 	updateCompletedTodoState( completedTodo ) {
