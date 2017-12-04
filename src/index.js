@@ -5,14 +5,12 @@
  */
 
 // User imports
-import $ from 'jQuery';
 import API from './api/API';
 import { appState } from './utilities/State';
 import WPTodo from './WPTodo';
 import './scss/index.scss';
 
-// Initialize our app when the page is ready.
-$( function() {
+document.addEventListener( 'DOMContentLoaded', () => {
 	// Get the app config and then kick off the app.
 	API.getConfig()
 		.then( ( config ) => {
