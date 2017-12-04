@@ -16,6 +16,11 @@ document.addEventListener( 'DOMContentLoaded', () => {
 		.then( ( config ) => {
 			appState.setState({ config: config.data });
 
+			API.getLists()
+				.then( ({ data }) => {
+					appState.setState({ todoLists: data });
+				});
+
 			API.getTodos()
 				.then( ({ data }) => {
 					appState.setState({ todos: data });
