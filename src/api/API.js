@@ -22,6 +22,10 @@ class API {
 		return axios.get( `${API_URL}/todoLists/${state.config.primaryList}/todos` );
 	}
 
+	static getLists() {
+		return axios.get( `${API_URL}/todoLists` );
+	}
+
 	static addTodo( list, todo ) {
 		if ( appState.getState().activeList ) {
 			return axios.post( `${API_URL}/todoLists/${state.config.activeList}/todos`, todo );
