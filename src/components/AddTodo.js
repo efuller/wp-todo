@@ -4,8 +4,6 @@ import { appState } from '../utilities/State';
 import uuid from 'uuid/v4';
 import addToDoTemplate from '../views/addToDo.html';
 
-import $ from 'jQuery';
-
 class AddTodo {
 	constructor() {
 		this.cache();
@@ -14,11 +12,11 @@ class AddTodo {
 	}
 
 	render() {
-		this.$footer.html( addToDoTemplate() );
+		this.footer.innerHTML = addToDoTemplate();
 	}
 
 	cache() {
-		this.$footer = $( '#wp-todo-footer' );
+		this.footer = document.getElementById( 'wp-todo-footer' );
 	}
 
 	updateAddTodoState( todo ) {
@@ -34,11 +32,11 @@ class AddTodo {
 	}
 
 	bindEvents() {
-		const $form = $( '#add-todo-form' );
-		$form.submit( ( e ) => {
+		const form = document.getElementById( 'add-todo-form' );
+		form.addEventListener( 'submit', ( e ) => {
 			e.preventDefault();
-			const $input = $form.find( '#add-todo' );
-			const todo = $input.val().trim();
+			const input = form.querySelector( '#add-todo' );
+			const todo = input.value.trim();
 			const state = appState.getState();
 			const list = state.activeList || state.primaryList;
 
@@ -55,7 +53,7 @@ class AddTodo {
 				.then( ( response ) => {
 					this.updateAddTodoState( response.data );
 					events.emit( 'add-todo', todo );
-					$input.val( '' );
+					input.value = '';
 				});
 		});
 	}
