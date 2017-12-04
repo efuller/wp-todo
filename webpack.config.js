@@ -49,7 +49,7 @@ const config = {
 			},
 			{
 				test: /\.html$/,
-				loader: 'mustache-loader'
+				loader: 'mustache-loader?noShortcut'
 			}
 		]
 	},
