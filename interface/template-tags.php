@@ -36,7 +36,15 @@ function wpt_container() {
 					<div class="wp-todo-loader"></div>
 				</div>
 				<div id="wp-todo-list-container"></div>
-				<div id="new-list" class="panel panel-hidden"><h3>add a new list</h3></div>
+				<div id="new-list" class="panel panel-hidden">
+					<form id="add-list-form">
+						<div class="form-row">
+							<label for="add-list">Add List</label>
+							<input type="text" name="list" id="add-list">
+						</div>
+					</form>
+				</div>
+				<div id="messaging-container"></div>
 			</div>
 			<footer id="wp-todo-footer" class="wp-todo-footer"></footer>
 		</section>
