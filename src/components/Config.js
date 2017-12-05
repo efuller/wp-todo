@@ -55,20 +55,24 @@ class Config {
 	}
 
 	handleHideCompleted() {
+		const config = appState.getState().config;
+		const newConfig = Object.assign({}, config, { hideCompleted: ! config.hideCompleted });
 
-		API.toggleHideCompleted()
-			.then( ( result ) => {
-				this.updateState( result );
+		API.updateConfig( newConfig )
+			.then( result => {
+				this.updateState( result.data );
 				this.render();
 				events.emit( 'render-todos' );
 			});
 	}
 
 	handleHideDeleted() {
+		const config = appState.getState().config;
+		const newConfig = Object.assign({}, config, { hideDeleted: ! config.hideDeleted });
 
-		API.toggleHideDeleted()
-			.then( ( result ) => {
-				this.updateState( result );
+		API.updateConfig( newConfig )
+			.then( result => {
+				this.updateState( result.data );
 				this.render();
 				events.emit( 'render-todos' );
 			});
