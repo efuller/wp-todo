@@ -34,7 +34,7 @@ class API {
 	}
 
 	static addTodo( list, todo ) {
-		return axios.post( `${API_URL}/todoLists/${state.config.activeList}/todos`, todo );
+		return axios.post( `${API_URL}/todoLists/${list}/todos`, todo );
 	}
 
 	/**
