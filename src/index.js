@@ -21,7 +21,9 @@ document.addEventListener( 'DOMContentLoaded', () => {
 					appState.setState({ todoLists: data });
 				});
 
-			API.getTodos()
+			const { activeList } = appState.getState().config;
+
+			API.getTodos( activeList )
 				.then( ({ data }) => {
 					appState.setState({ todos: data });
 					new WPTodo().init();

@@ -25,8 +25,8 @@ class API {
 			});
 	}
 
-	static getTodos() {
-		return axios.get( `${API_URL}/todoLists/${state.config.activeList}/todos` );
+	static getTodos( listID ) {
+		return axios.get( `${API_URL}/todoLists/${listID}/todos` );
 	}
 
 	static getLists() {

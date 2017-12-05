@@ -39,7 +39,7 @@ class Lists {
 		const toggleCurrentActiveList = API.toggleActiveList( currentActiveListID );
 		const toggleNewActiveList = API.toggleActiveList( listID );
 		const updateConfig = API.updateConfig({ activeList: listID });
-		const getTodos = API.getTodos();
+		const getTodos = API.getTodos( listID );
 
 		Promise.all([ toggleCurrentActiveList, toggleNewActiveList, updateConfig, getTodos ])
 			.then( ( results ) => {
@@ -47,8 +47,9 @@ class Lists {
 
 				const state = appState.getState();
 				const { config, todoLists } = state;
+				const activeListID = results[1].data.id;
 
-				const newConfig = Object.assign({}, config, { activeList: results[1].data.id });
+				const newConfig = Object.assign({}, config, { activeList: activeListID });
 
 				const newTodoLists = todoLists.map( list => {
 					if ( list.id === listID ) {
@@ -65,7 +66,7 @@ class Lists {
 					todoLists: newTodoLists
 				});
 
-				return API.getTodos();
+				return API.getTodos( activeListID );
 			})
 			.then( results => {
 				const todos = results.data;
