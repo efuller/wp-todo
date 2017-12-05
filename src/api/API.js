@@ -2,9 +2,6 @@ import axios from 'axios';
 import { appState } from '../utilities/State';
 import { API_URL } from '../utilities/helpers';
 
-// Get the app state.
-const state = appState.getState();
-
 /**
  * Fake API Class
  */
@@ -31,6 +28,10 @@ class API {
 
 	static getLists() {
 		return axios.get( `${API_URL}/todoLists` );
+	}
+
+	static addList( list ) {
+		return axios.post( `${API_URL}/todoLists`, list );
 	}
 
 	static addTodo( list, todo ) {
