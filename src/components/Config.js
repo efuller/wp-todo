@@ -19,10 +19,8 @@ class Config {
 			hideDeleted: state.config.hideDeleted,
 		};
 
-		const todoLists = state.todoLists;
-
 		const container = document.createElement( 'div' );
-		container.innerHTML = configTemplate.render({ config, todoLists }, { listSelect: listSelect });
+		container.innerHTML = configTemplate.render({ config });
 
 		this.listContainer.appendChild( container );
 	}
@@ -38,36 +36,6 @@ class Config {
 		this.listSelect = document.getElementById( 'wp-todo-list-select' );
 	}
 
-	handleListSelectChange( e ) {
-		const currentActiveListID = appState.getState().config.activeList;
-		const listID = parseInt( e.target.value.trim() );
-
-		// Flip the current primary list to not be primary list
-		const toggleCurrentActiveList = API.toggleActiveList( currentActiveListID );
-		const toggleNewActiveList = API.toggleActiveList( listID );
-		const updateConfig = API.updateConfig({ activeList: listID });
-
-		Promise.all([ toggleCurrentActiveList, toggleNewActiveList, updateConfig ])
-			.then( ( results ) => {
-
-				const state = appState.getState();
-				const { config, todoLists } = state;
-
-				const newTodoLists = todoLists.map( list => {
-					if ( list.id === listID ) {
-						list.activeList = true;
-						return list;
-					} else {
-						list.activeList = false;
-						return list;
-					}
-				});
-
-				const newConfig = Object.assign({}, config, { activeList: results[1].data.id });
-				appState.setState({config: newConfig, todoLists: newTodoLists });
-		});
-	}
-
 	bindEvents() {
 		const configPanel = this.listContainer.querySelector( '#configure' );
 
@@ -77,7 +45,6 @@ class Config {
 
 		this.toggleCompleted.addEventListener( 'change', this.handleHideCompleted.bind( this ) );
 		this.toggleDeleted.addEventListener( 'change', this.handleHideDeleted.bind( this ) );
-		this.listSelect.addEventListener( 'change', this.handleListSelectChange.bind( this ) );
 	}
 
 	updateState( result ) {
