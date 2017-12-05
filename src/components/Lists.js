@@ -1,8 +1,8 @@
-import listsTemplate from '../views/listsTemplate.html';
 import listSelect from '../views/listSelect.html';
 import { events } from '../utilities/Events';
 import { appState } from '../utilities/State';
 import API from '../api/API';
+import uuid from "uuid/v4";
 
 class Lists {
 	constructor() {
@@ -12,23 +12,15 @@ class Lists {
 	}
 
 	render() {
-		const listContainer = document.createElement( 'div' );
-		listContainer.innerHTML = listsTemplate.render();
-		this.listContainer.appendChild( listContainer );
-
 		const state = appState.getState();
-
 		this.listSelect.innerHTML = listSelect.render({ todoLists: state.todoLists });
 	}
 
 	cache() {
-		this.listContainer = document.getElementById( 'wp-todo-content-container' );
 		this.listSelect = document.getElementById( 'list-select' );
-	}
-
-	cacheAfterRender() {
-		this.toggleCompleted = document.getElementById( 'hide-completed' );
-		this.toggleDeleted = document.getElementById( 'hide-deleted' );
+		this.listPanel = document.getElementById( 'new-list' );
+		this.addListButton = document.getElementById( 'add-list' );
+		this.addListForm = document.getElementById( 'add-list-form' );
 	}
 
 	handleListSelect( e ) {
@@ -77,9 +69,44 @@ class Lists {
 			});
 	}
 
+	handleAddListFormSubmit( e ) {
+
+			e.preventDefault();
+			const list = e.target.list.value.trim();
+
+			const newList = {
+				'id': uuid(),
+				'name': list,
+				'activeList': false
+			};
+
+			API.addList( newList )
+				.then( ( result ) => {
+					const list = result.data;
+
+					const todoLists = appState.getState().todoLists;
+
+					const newTodoLists = [
+						...todoLists,
+						list
+					];
+
+					appState.setState({ todoLists: newTodoLists });
+					e.target.list.value = '';
+					this.render();
+				});
+	}
+
 	bindEvents() {
 		this.listSelect.addEventListener( 'change', this.handleListSelect.bind( this ) );
+
+		this.addListButton.addEventListener( 'click', () => {
+			this.listPanel.classList.toggle( 'panel-hidden' );
+		});
+
+		this.addListForm.addEventListener( 'submit', this.handleAddListFormSubmit.bind( this ) );
 	}
+
 }
 
 export default Lists;
