@@ -14,6 +14,17 @@ class API {
 		return axios.get( `${API_URL}/config` );
 	}
 
+	static updateConfig( data ) {
+		return API.getConfig()
+			.then( result => {
+				const config = result.data;
+
+				const newConfig = Object.assign({}, config, data );
+
+				return axios.put( `${API_URL}/config`, newConfig );
+			});
+	}
+
 	static getTodos() {
 		if ( appState.getState().config.activeList ) {
 			return axios.get( `${API_URL}/todoLists/${state.config.activeList}/todos` );
@@ -117,6 +128,23 @@ class API {
 				return result.data;
 			})
 			.catch( error => error );
+	}
+
+	static getList( id ) {
+		return axios.get( `${API_URL}/todoLists/${id}` );
+	}
+
+	static togglePrimaryList( id ) {
+		return API.getList( id )
+			.then( result => {
+				const list = result.data;
+
+				const newList = Object.assign({}, list, { primaryList: ! list.primaryList });
+
+				debugger;
+
+				return axios.put( `${API_URL}/todoLists/${id}`, newList );
+			});
 	}
 }
 
