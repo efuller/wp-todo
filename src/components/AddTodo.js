@@ -38,7 +38,7 @@ class AddTodo {
 			const input = form.querySelector( '#add-todo' );
 			const todo = input.value.trim();
 			const state = appState.getState();
-			const list = state.activeList;
+			const list = state.config.activeList;
 
 			const newTodo = {
 				'id': uuid(),
