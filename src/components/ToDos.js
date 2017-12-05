@@ -3,12 +3,14 @@ import { events } from '../utilities/Events';
 import { appState } from '../utilities/State';
 import DOM from '../utilities/DOM';
 import todoTemplate from '../views/todoTemplate.html';
+import messagingTemplate from '../views/messagingTemplate.html';
 
 class Todos {
 	constructor() {
 		this.bindEvents();
 		this.loader = document.querySelector( '.wp-todo-loader-container' );
 		this.listContainer = document.getElementById( 'wp-todo-list-container' );
+		this.messageContainer = document.getElementById( 'message-container' );
 		events.emit( 'show-loader' );
 	}
 
@@ -28,19 +30,28 @@ class Todos {
 		events.emit( 'hide-loader' );
 		let todos = state.todos;
 
-		if ( state.config.hideDeleted ) {
-			todos = todos.filter( ( todo ) => {
-				return true !== todo.deleted;
-			});
+		this.messageContainer.innerHTML = '';
+		this.listContainer.innerHTML = '';
+
+		if ( 0 === todos.length ) {
+			this.messageContainer.innerHTML = messagingTemplate.render({ message: { text: 'Add a todo to your list!' } });
+		} else {
+			if ( state.config.hideDeleted ) {
+				todos = todos.filter( ( todo ) => {
+					return true !== todo.deleted;
+				});
+			}
+
+			if ( state.config.hideCompleted ) {
+				todos = todos.filter( ( todo ) => {
+					return true !== todo.completed;
+				});
+			}
+
+			this.listContainer.innerHTML = todoTemplate.render({ todos: todos });
 		}
 
-		if ( state.config.hideCompleted ) {
-			todos = todos.filter( ( todo ) => {
-				return true !== todo.completed;
-			});
-		}
 
-		this.listContainer.innerHTML = todoTemplate.render({ todos: todos });
 	}
 
 	updateCompletedTodoState( completedTodo ) {

@@ -44,7 +44,7 @@ function wpt_container() {
 						</div>
 					</form>
 				</div>
-				<div id="messaging-container"></div>
+				<div id="message-container"></div>
 			</div>
 			<footer id="wp-todo-footer" class="wp-todo-footer"></footer>
 		</section>
