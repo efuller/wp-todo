@@ -18,10 +18,12 @@ class Config {
 			hideCompleted: state.config.hideCompleted,
 			hideDeleted: state.config.hideDeleted,
 		};
+
 		const todoLists = state.todoLists;
 
 		const container = document.createElement( 'div' );
 		container.innerHTML = configTemplate.render({ config, todoLists }, { listSelect: listSelect });
+
 		this.listContainer.appendChild( container );
 	}
 
@@ -33,16 +35,43 @@ class Config {
 	cacheAfterRender() {
 		this.toggleCompleted = document.getElementById( 'hide-completed' );
 		this.toggleDeleted = document.getElementById( 'hide-deleted' );
+		this.listSelect = document.getElementById( 'wp-todo-list-select' );
+	}
+
+	handleListSelectChange( e ) {
+		const currentPrimaryListID = appState.getState().config.primaryList;
+		const listID = parseInt( e.target.value.trim() );
+		const name = e.target.selectedOptions[0].text.trim();
+		const listData = {
+			id: listID,
+			primaryList: true,
+			name
+		};
+
+		// Flip the current primary list to not be primary list
+		const toggleCurrentPrimaryList = API.togglePrimaryList( currentPrimaryListID );
+		const toggleNewPrimaryList = API.togglePrimaryList( listID );
+		const updateConfig = API.updateConfig({ primaryList: listID });
+
+		Promise.all([ toggleCurrentPrimaryList, toggleNewPrimaryList, updateConfig ])
+			.then( ( results ) => {
+				console.log( 'result1:', results );
+		});
+
+		// Render todos
+
 	}
 
 	bindEvents() {
 		const configPanel = this.listContainer.querySelector( '#configure' );
+
 		this.configLink.addEventListener( 'click', () => {
 			configPanel.classList.toggle( 'panel-hidden' );
 		});
 
 		this.toggleCompleted.addEventListener( 'change', this.handleHideCompleted.bind( this ) );
 		this.toggleDeleted.addEventListener( 'change', this.handleHideDeleted.bind( this ) );
+		this.listSelect.addEventListener( 'change', this.handleListSelectChange.bind( this ) );
 	}
 
 	updateState( result ) {
