@@ -27,6 +27,7 @@ function wpt_container() {
 			<nav id="wp-todo-navbar" class="wp-todo-navbar">
 				<ul class="wp-todo-menu">
 					<li class="wp-todo-menu-item"><div id="list-select"></div></li>
+					<li class="wp-todo-menu-item"><button id="add-list">+ List</button></li>
 					<li class="wp-todo-menu-item"><button id="configure-link">Configure</button></li>
 				</ul>
 			</nav>
