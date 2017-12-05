@@ -141,8 +141,6 @@ class API {
 
 				const newList = Object.assign({}, list, { primaryList: ! list.primaryList });
 
-				debugger;
-
 				return axios.put( `${API_URL}/todoLists/${id}`, newList );
 			});
 	}
