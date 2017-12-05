@@ -3,7 +3,7 @@ const uuid = require( 'uuid/v4' );
 module.exports = () => {
 	return {
 		config: {
-			'primaryList': 1,
+			'primaryList': 2,
 			'hideCompleted': false,
 			'hideDeleted': false,
 			'activeList': null
@@ -11,10 +11,12 @@ module.exports = () => {
 		'todoLists': [
 			{
 				'id': 1,
+				'primaryList': false,
 				'name': 'default list'
 			},
 			{
 				'id': 2,
+				'primaryList': true,
 				'name': 'Another list'
 			}
 		],
