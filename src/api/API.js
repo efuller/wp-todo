@@ -26,11 +26,7 @@ class API {
 	}
 
 	static getTodos() {
-		if ( appState.getState().config.activeList ) {
-			return axios.get( `${API_URL}/todoLists/${state.config.activeList}/todos` );
-		}
-
-		return axios.get( `${API_URL}/todoLists/${state.config.primaryList}/todos` );
+		return axios.get( `${API_URL}/todoLists/${state.config.activeList}/todos` );
 	}
 
 	static getLists() {
@@ -38,11 +34,7 @@ class API {
 	}
 
 	static addTodo( list, todo ) {
-		if ( appState.getState().activeList ) {
-			return axios.post( `${API_URL}/todoLists/${state.config.activeList}/todos`, todo );
-		}
-
-		return axios.post( `${API_URL}/todoLists/${state.config.primaryList}/todos`, todo );
+		return axios.post( `${API_URL}/todoLists/${state.config.activeList}/todos`, todo );
 	}
 
 	/**
@@ -134,12 +126,12 @@ class API {
 		return axios.get( `${API_URL}/todoLists/${id}` );
 	}
 
-	static togglePrimaryList( id ) {
+	static toggleActiveList( id ) {
 		return API.getList( id )
 			.then( result => {
 				const list = result.data;
 
-				const newList = Object.assign({}, list, { primaryList: ! list.primaryList });
+				const newList = Object.assign({}, list, { activeList: ! list.activeList });
 
 				return axios.put( `${API_URL}/todoLists/${id}`, newList );
 			});

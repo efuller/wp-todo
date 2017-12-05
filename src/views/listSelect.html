@@ -1,5 +1,5 @@
 <select name="wp-todo-lists" id="wp-todo-list-select">
 	{{#todoLists}}
-		<option value="{{id}}" {{#primaryList}} selected {{/primaryList}}>{{name}}</option>
+		<option value="{{id}}" {{#activeList}} selected {{/activeList}}>{{name}}</option>
 	{{/todoLists}}
 </select>

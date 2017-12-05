@@ -39,15 +39,15 @@ class Config {
 	}
 
 	handleListSelectChange( e ) {
-		const currentPrimaryListID = appState.getState().config.primaryList;
+		const currentActiveListID = appState.getState().config.activeList;
 		const listID = parseInt( e.target.value.trim() );
 
 		// Flip the current primary list to not be primary list
-		const toggleCurrentPrimaryList = API.togglePrimaryList( currentPrimaryListID );
-		const toggleNewPrimaryList = API.togglePrimaryList( listID );
-		const updateConfig = API.updateConfig({ primaryList: listID });
+		const toggleCurrentActiveList = API.toggleActiveList( currentActiveListID );
+		const toggleNewActiveList = API.toggleActiveList( listID );
+		const updateConfig = API.updateConfig({ activeList: listID });
 
-		Promise.all([ toggleCurrentPrimaryList, toggleNewPrimaryList, updateConfig ])
+		Promise.all([ toggleCurrentActiveList, toggleNewActiveList, updateConfig ])
 			.then( ( results ) => {
 
 				const state = appState.getState();
@@ -55,15 +55,15 @@ class Config {
 
 				const newTodoLists = todoLists.map( list => {
 					if ( list.id === listID ) {
-						list.primaryList = true;
+						list.activeList = true;
 						return list;
 					} else {
-						list.primaryList = false;
+						list.activeList = false;
 						return list;
 					}
 				});
 
-				const newConfig = Object.assign({}, config, { primaryList: results[1].data.id });
+				const newConfig = Object.assign({}, config, { activeList: results[1].data.id });
 				appState.setState({config: newConfig, todoLists: newTodoLists });
 		});
 	}
