@@ -1,4 +1,6 @@
 import listsTemplate from '../views/listsTemplate.html';
+import listSelect from '../views/listSelect.html';
+import { appState } from '../utilities/State';
 
 class Lists {
 	constructor() {
@@ -11,11 +13,15 @@ class Lists {
 		const listContainer = document.createElement( 'div' );
 		listContainer.innerHTML = listsTemplate.render();
 		this.listContainer.appendChild( listContainer );
+
+		const state = appState.getState();
+
+		this.listSelect.innerHTML = listSelect.render({ todoLists: state.todoLists });
 	}
 
 	cache() {
 		this.listContainer = document.getElementById( 'wp-todo-content-container' );
-		this.listsLink = document.getElementById( 'configure-lists' );
+		this.listSelect = document.getElementById( 'list-select' );
 	}
 
 	cacheAfterRender() {
@@ -24,10 +30,7 @@ class Lists {
 	}
 
 	bindEvents() {
-		const listsPanel = this.listContainer.querySelector( '#lists' );
-		this.listsLink.addEventListener( 'click', () => {
-			listsPanel.toggleClass( 'panel-hidden' );
-		});
+
 	}
 }
 
