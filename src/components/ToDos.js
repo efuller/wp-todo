@@ -107,7 +107,7 @@ class Todos {
 	}
 
 	showLoader() {
-		this.loader.style.display = 'block';
+		this.loader.style.display = 'flex';
 	}
 }
 
