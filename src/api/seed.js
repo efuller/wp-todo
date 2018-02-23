@@ -10,12 +10,12 @@ module.exports = () => {
 		'todoLists': [
 			{
 				'id': 1,
-				'activeList': true,
+				'activeList': false,
 				'name': 'default list'
 			},
 			{
 				'id': 2,
-				'activeList': false,
+				'activeList': true,
 				'name': 'Another list'
 			}
 		],
