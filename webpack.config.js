@@ -54,11 +54,6 @@ const config = {
 		]
 	},
 
-	// Here we are exposing a jQuery global that can be used in modules since WordPress is using it.
-	externals: {
-		'jQuery': 'jQuery'
-	},
-
 	// Webpack plugins - These are like addons that can provide additional functionality.
 	plugins: [
 

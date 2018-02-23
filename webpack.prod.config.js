@@ -54,10 +54,6 @@ const prodConfig = {
 		]
 	},
 
-	// Here we are exposing a jQuery global that can be used in modules since WordPress is using it.
-	externals: {
-		'jQuery': 'jQuery'
-	},
 	plugins: [
 
 		// Extract the CSS file.

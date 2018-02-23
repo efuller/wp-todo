@@ -5,7 +5,6 @@ module.exports = {
 		"es6": true,
 	},
 	"extends": "./node_modules/eslint-config-wordpress/index.js",
-	"installedESLint": true,
 	"parserOptions": {
 		"sourceType": "module",
 	},
