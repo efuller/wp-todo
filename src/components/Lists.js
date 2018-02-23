@@ -23,9 +23,13 @@ class Lists {
 		this.addListForm = document.getElementById( 'add-list-form' );
 	}
 
+	toggleListPanel() {
+        this.listPanel.classList.toggle( 'panel-hidden' );
+    }
+
 	handleListSelect( e ) {
 		const currentActiveListID = appState.getState().config.activeList;
-		const listID = parseInt( e.target.value.trim() );
+		const listID = e.target.value.trim();
 
 		// Flip the current primary list to not be primary list
 		const toggleCurrentActiveList = API.toggleActiveList( currentActiveListID );
@@ -94,15 +98,14 @@ class Lists {
 					appState.setState({ todoLists: newTodoLists });
 					e.target.list.value = '';
 					this.render();
+					this.toggleListPanel();
 				});
 	}
 
 	bindEvents() {
 		this.listSelect.addEventListener( 'change', this.handleListSelect.bind( this ) );
 
-		this.addListButton.addEventListener( 'click', () => {
-			this.listPanel.classList.toggle( 'panel-hidden' );
-		});
+		this.addListButton.addEventListener( 'click', this.toggleListPanel.bind( this ) );
 
 		this.addListForm.addEventListener( 'submit', this.handleAddListFormSubmit.bind( this ) );
 	}
