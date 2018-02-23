@@ -38,6 +38,7 @@
     "grunt-text-replace": "latest",
     "grunt-wp-deploy": "latest",
     "grunt-wp-i18n": "latest",
+    "json-server": "^0.12.1",
     "load-grunt-tasks": "latest",
     "mustache-loader": "^0.4.1",
     "nodemon": "^1.11.0",
