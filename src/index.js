@@ -13,21 +13,17 @@ import './scss/index.scss';
 document.addEventListener( 'DOMContentLoaded', () => {
 	const config = API.getConfig();
 	const lists = API.getLists();
-	Promise.all([ config, lists ])
+	const todos = API.getTodos();
+	Promise.all([ config, lists, todos ])
 		.then( ( values ) => {
 			const { data: configData } = values[0];
 			const { data: listsData } = values[1];
+			const { data: todos } = values[2];
 			appState.setState({
 				config: configData,
-				todoLists: listsData
+				todoLists: listsData,
+                todos
 			});
-
-			return API.getTodos( configData.activeList );
-		})
-		.then( ( result ) => {
-			const todos = result.data;
-			appState.setState({ todos });
-
             new WPTodo().init();
-		});
+        });
 });
