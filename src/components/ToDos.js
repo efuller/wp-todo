@@ -17,7 +17,7 @@ class Todos {
 	bindEvents() {
 		events.on( 'hide-loader', () => this.hideLoader() );
 		events.on( 'show-loader', () => this.showLoader() );
-		events.on( 'render-todos', () => this.renderToDoList() );
+		events.on( 'state-change', () => this.renderToDoList() );
 
 		const todos = document.getElementById( 'wp-todo-list-container' );
 
@@ -28,7 +28,7 @@ class Todos {
 	renderToDoList() {
 		const state = appState.getState();
 		events.emit( 'hide-loader' );
-		let todos = state.todos;
+		let todos = state.todos.filter( todo => todo.todoListId === state.config.activeList );
 
 		this.messageContainer.innerHTML = '';
 		this.listContainer.innerHTML = '';
