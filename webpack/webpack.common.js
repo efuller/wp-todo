@@ -3,7 +3,7 @@ const ProgressBar = require( 'progress-bar-webpack-plugin' );
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const config = {
-
+	mode: 'development',
 	entry: './src/',
 	output: {
 		filename: 'main.js',
