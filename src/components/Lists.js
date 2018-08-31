@@ -6,15 +6,16 @@ import uuid from 'uuid/v4';
 
 class Lists {
 	constructor() {
-		this.state = appState.getState();
 		this.cache();
 		this.render();
 		this.bindEvents();
 	}
 
 	render() {
-		this.listSelect.innerHTML = listSelect.render({ todoLists: this.state.todoLists });
-	}
+        const state = appState.getState();
+
+        this.listSelect.innerHTML = listSelect.render({ todoLists: state.todoLists });
+    }
 
 	cache() {
 		this.listSelect = document.getElementById( 'list-select' );
@@ -28,10 +29,23 @@ class Lists {
     }
 
 	handleListSelect( e ) {
+		// @TODO There probably isn't a need to keep track of activeList inside of 'todoLists'.
 		const listID = parseInt( e.target.value.trim() );
-        const newConfig = Object.assign({}, this.state.config, { activeList: listID });
+        const state = appState.getState();
+        const newConfig = Object.assign({}, state.config, { activeList: listID });
+        const newLists = state.todoLists.map( list => {
+			if ( list.id !== listID ) {
+				list.activeList = false;
+				return list;
+			}
+			list.activeList = ! list.activeList;
+			return list;
+		});
 
-		appState.setState({ config: newConfig });
+		appState.setState({
+			config: newConfig,
+			todoLists: newLists
+		});
 	}
 
 	handleAddListFormSubmit( e ) {
