@@ -2,18 +2,18 @@ import listSelect from '../views/listSelect.html';
 import { events } from '../utilities/Events';
 import { appState } from '../utilities/State';
 import API from '../api/API';
-import uuid from "uuid/v4";
+import uuid from 'uuid/v4';
 
 class Lists {
 	constructor() {
+		this.state = appState.getState();
 		this.cache();
 		this.render();
 		this.bindEvents();
 	}
 
 	render() {
-		const state = appState.getState();
-		this.listSelect.innerHTML = listSelect.render({ todoLists: state.todoLists });
+		this.listSelect.innerHTML = listSelect.render({ todoLists: this.state.todoLists });
 	}
 
 	cache() {
@@ -28,49 +28,10 @@ class Lists {
     }
 
 	handleListSelect( e ) {
-		const currentActiveListID = appState.getState().config.activeList;
-		const listID = e.target.value.trim();
+		const listID = parseInt( e.target.value.trim() );
+        const newConfig = Object.assign({}, this.state.config, { activeList: listID });
 
-		// Flip the current primary list to not be primary list
-		const toggleCurrentActiveList = API.toggleActiveList( currentActiveListID );
-		const toggleNewActiveList = API.toggleActiveList( listID );
-		const updateConfig = API.updateConfig({ activeList: listID });
-		const getTodos = API.getTodos( listID );
-
-		Promise.all([ toggleCurrentActiveList, toggleNewActiveList, updateConfig, getTodos ])
-			.then( ( results ) => {
-				events.emit( 'show-loader' );
-
-				const state = appState.getState();
-				const { config, todoLists } = state;
-				const activeListID = results[1].data.id;
-
-				const newConfig = Object.assign({}, config, { activeList: activeListID });
-
-				const newTodoLists = todoLists.map( list => {
-					if ( list.id === listID ) {
-						list.activeList = true;
-						return list;
-					} else {
-						list.activeList = false;
-						return list;
-					}
-				});
-
-				appState.setState({
-					config: newConfig,
-					todoLists: newTodoLists
-				});
-
-				return API.getTodos( activeListID );
-			})
-			.then( results => {
-				const todos = results.data;
-
-				appState.setState({ todos });
-
-				events.emit( 'render-todos' );
-			});
+		appState.setState({ config: newConfig });
 	}
 
 	handleAddListFormSubmit( e ) {
@@ -106,8 +67,6 @@ class Lists {
 
 					appState.setState({ todoLists: activeTodoListSet, todos: [] });
 					e.target.list.value = '';
-					this.render();
-                    events.emit( 'render-todos' );
 					this.toggleListPanel();
 				});
 	}
@@ -118,7 +77,9 @@ class Lists {
 		this.addListButton.addEventListener( 'click', this.toggleListPanel.bind( this ) );
 
 		this.addListForm.addEventListener( 'submit', this.handleAddListFormSubmit.bind( this ) );
-	}
+
+        events.on( 'state-change', () => this.render() );
+    }
 
 }
 
