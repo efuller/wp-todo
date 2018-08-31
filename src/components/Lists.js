@@ -81,7 +81,7 @@ class Lists {
 			const newList = {
 				'id': uuid(),
 				'name': list,
-				'activeList': false
+				'activeList': true
 			};
 
 			API.addList( newList )
@@ -95,9 +95,19 @@ class Lists {
 						list
 					];
 
-					appState.setState({ todoLists: newTodoLists });
+					const activeTodoListSet = newTodoLists.map( item => {
+						if ( item.id === list.id ) {
+							return item;
+						}
+
+						item.activeList = false;
+						return item;
+					});
+
+					appState.setState({ todoLists: activeTodoListSet, todos: [] });
 					e.target.list.value = '';
 					this.render();
+                    events.emit( 'render-todos' );
 					this.toggleListPanel();
 				});
 	}
