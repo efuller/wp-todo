@@ -32,7 +32,7 @@ module.exports = () => {
 				'id': uuid(),
 				'title': 'Todo Number 6',
 				'description': 'Here is the description for number 1',
-				'todoListId': 1,
+				'todoListId': 2,
 				'completed': true,
 				'deleted': false
 			},
