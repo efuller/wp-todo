@@ -11,22 +11,23 @@ import WPTodo from './WPTodo';
 import './scss/index.scss';
 
 document.addEventListener( 'DOMContentLoaded', () => {
-	// Get the app config and then kick off the app.
-	API.getConfig()
-		.then( ( config ) => {
-			appState.setState({ config: config.data });
+	const config = API.getConfig();
+	const lists = API.getLists();
+	Promise.all([ config, lists ])
+		.then( ( values ) => {
+			const { data: configData } = values[0];
+			const { data: listsData } = values[1];
+			appState.setState({
+				config: configData,
+				todoLists: listsData
+			});
 
-			API.getLists()
-				.then( ({ data }) => {
-					appState.setState({ todoLists: data });
-				});
+			return API.getTodos( configData.activeList );
+		})
+		.then( ( result ) => {
+			const todos = result.data;
+			appState.setState({ todos });
 
-			const { activeList } = appState.getState().config;
-
-			API.getTodos( activeList )
-				.then( ({ data }) => {
-					appState.setState({ todos: data });
-					new WPTodo().init();
-				});
+            new WPTodo().init();
 		});
 });
